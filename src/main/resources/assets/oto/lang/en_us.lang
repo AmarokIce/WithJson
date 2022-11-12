@@ -1,0 +1,9 @@
+oto.notfindplayer.command=Cannot find player!
+oto.opgive.command=/otogive - Give all player success!
+oto.killae.command=/killallentity - Kill all entity if it can. (WHICH OUT!)
+oto.fill.command=/fill [start x] [start y] [start z] [end x] [end y] [end z] [Block RegisterName or Block Id] [meta] - Fill block in.
+oto.rfill.command=/fill [start x] [start y] [start z] [end x] [end y] [end z] [Block RegisterName or Block Id] [meta] [randomInt] Random fill the block?
+oto.rtp.command=/rtp - Random tp you to somewhere.
+oto.setport.command=/setport - Set a port , now you can use back port.
+oto.backport.command=/backport - Back you set port.
+oto.ototp.command=/ototp [player] [player?] The better tp that you tp another player or tp other player to another player, even they not in same DIM.

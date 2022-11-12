@@ -1,0 +1,9 @@
+oto.notfindplayer.command=无法找到玩家!
+oto.opgive.command=/otogive - 给予全部玩家物品。
+oto.killae.command=/killallentity - 杀掉全部加载区块内的生物，如果可以杀掉。 (注意点!)
+oto.fill.command=/fill [start x] [start y] [start z] [end x] [end y] [end z] [Block RegisterName or Block Id] [meta] - 填充方块.
+oto.rfill.command=/fill [start x] [start y] [start z] [end x] [end y] [end z] [Block RegisterName or Block Id] [meta] [randomInt] 随机填充方块?randomInt内数字越大概率越大，最低为2（50%）
+oto.rtp.command=/rtp - 随机带你前往某处.
+oto.setport.command=/setport - 设置点，你可以用backport回到点.
+oto.backport.command=/backport - 回到点.
+oto.ototp.command=/ototp [player] [player?] 更好的tp,你可以把你TP到另一个玩家或者把别的玩家TP到另一个玩家，即便他们不在同一个维度.

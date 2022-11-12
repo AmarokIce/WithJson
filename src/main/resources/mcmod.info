@@ -1,0 +1,16 @@
+[
+{
+  "modid": "oto",
+  "name": "OTO",
+  "description": "¿",
+  "version": "1.0.1",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Someoneice"],
+  "credits": "Someoneice",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": ["required-after:legacymckotlin"]
+}
+]
