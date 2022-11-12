@@ -1,9 +1,9 @@
 [
 {
-  "modid": "oto",
-  "name": "OTO",
-  "description": "¿",
-  "version": "1.0.1",
+  "modid": "ovo",
+  "name": "OVO",
+  "description": "A mod for minecraft, and now you can use json to make more Items!",
+  "version": "0.0.1",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
