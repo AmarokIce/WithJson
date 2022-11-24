@@ -1,0 +1,7 @@
+[
+    {
+        "name": "test_item",
+        "max_size": 64,
+        "group": "testgroup"
+    }
+]

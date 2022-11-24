@@ -1,0 +1,8 @@
+[
+    {
+        "name": "pineapple_knife",
+        "attackDamage": 0,
+        "tool_meta": "iron",
+        "group": "testgroup"
+    }
+]

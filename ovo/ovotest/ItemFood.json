@@ -1,0 +1,14 @@
+[
+    {
+        "name": "test_food",
+        "max_size": 64,
+        "hunger": 5,
+        "saturation": 0.2,
+        "wolf": false,
+        "always_eat": true,
+        "fast_food": false,
+        "isDrink": false,
+        "return_item": "null",
+        "group": "testgroup"
+    }
+]

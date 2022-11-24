@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "id": "ovo",
+  "version": "${version}",
+
+  "name": "OVO",
+  "description": "Create with JSON!",
+  "authors": [
+    "Someoneice"
+  ],
+  "contact": {
+  },
+
+  "license": "Pineapple",
+  "icon": "assets/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "club.someoneice.ovo.OVOMainKt::init"
+    ]
+  },
+  "mixins": [
+  ],
+  "depends": {
+    "fabricloader": ">=0.8.7",
+    "fabric": "*",
+    "fabric-language-kotlin": "*",
+    "minecraft": "1.16.x"
+  },
+  "suggests": {
+    "flamingo": "*"
+  }
+}

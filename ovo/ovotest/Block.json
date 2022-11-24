@@ -1,0 +1,8 @@
+[
+    {
+        "name": "test_block",
+        "hard": 1.0,
+        "drop_item": "null",
+        "group": "testgroup"
+    }
+]

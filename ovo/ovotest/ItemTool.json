@@ -1,0 +1,9 @@
+[
+    {
+        "name": "test_axe",
+        "attackDamage": 0,
+        "toolkit": "axe",
+        "tool_meta": "iron",
+        "group": "testgroup"
+    }
+]
