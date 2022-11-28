@@ -2,16 +2,18 @@ package club.someoneice.ovo.util
 
 import club.someoneice.ovo.json.Sandman
 import net.minecraft.item.Item
+import javax.annotation.Nullable
 
 object Util {
+
+    @Nullable
     fun findItemByText(Item: String): Item? {
         if (Item == "null") return null
-        var item: Item? = net.minecraft.item.Item.itemRegistry.getObject(Item) as Item
+        var item: Item? = net.minecraft.item.Item.itemRegistry.getObject(Item) as Item?
 
         if (item == null) {
             try {
-                val item1 = net.minecraft.item.Item.getItemById(Integer.valueOf(Item))
-                item = item1
+                item = net.minecraft.item.Item.getItemById(Integer.valueOf(Item))
             } catch (_: NumberFormatException) {
                 Sandman.nullSandman()
             }

@@ -1,5 +1,6 @@
 package club.someoneice.ovo.core
 
+import club.someoneice.ovo.RecipesHelper
 import club.someoneice.ovo.data.Group
 import club.someoneice.ovo.json.Sandman
 import club.someoneice.ovo.util.*
@@ -90,56 +91,48 @@ class DataProcessor(private val mod_id: String?) {
         @Beta
         for (recipe in DataList.dataRecipes) { // TODO - It so... I don't know how to description these shit code.
             when (recipe.recipe) {
-                "crafting_shaped" -> {
-                    val a0: Item? = if (recipe.items_list.size > 3)    findItemByText(recipe.items_list[3])     ?: Sandman.sandman().item else Sandman.sandman().item
-                    val a1: Item? = if (recipe.items_list.size > 4)    findItemByText(recipe.items_list[4])     ?: Sandman.sandman().item else Sandman.sandman().item
-                    val a2: Item? = if (recipe.items_list.size > 5)    findItemByText(recipe.items_list[5])     ?: Sandman.sandman().item else Sandman.sandman().item
-                    val a3: Item? = if (recipe.items_list.size > 6)    findItemByText(recipe.items_list[6])     ?: Sandman.sandman().item else Sandman.sandman().item
-                    val a4: Item? = if (recipe.items_list.size > 7)    findItemByText(recipe.items_list[7])     ?: Sandman.sandman().item else Sandman.sandman().item
-                    val a5: Item? = if (recipe.items_list.size > 8)    findItemByText(recipe.items_list[8])     ?: Sandman.sandman().item else Sandman.sandman().item
-                    val a6: Item? = if (recipe.items_list.size > 9)    findItemByText(recipe.items_list[9])   ?: Sandman.sandman().item else Sandman.sandman().item
-                    val a7: Item? = if (recipe.items_list.size > 10)   findItemByText(recipe.items_list[10])   ?: Sandman.sandman().item else Sandman.sandman().item
-                    val a8: Item? = if (recipe.items_list.size > 11)   findItemByText(recipe.items_list[11])   ?: Sandman.sandman().item else Sandman.sandman().item
 
-                    GameRegistry.addShapedRecipe(
-                        ItemStack(findItemByText(recipe.output)),
-                        recipe.items_list[0], recipe.items_list[1], recipe.items_list[2],
-                        'A', a0,
-                        'B', a1,
-                        'C', a2,
-                        'D', a3,
-                        'E', a4,
-                        'F', a5,
-                        'G', a6,
-                        'H', a7,
-                        'I', a8
-                    )
+                "crafting_shaped" -> {
+                    val ReciList = ArrayList<String>()
+                    val CharList = ArrayList<String>()
+                    val ItemList = ArrayList<Item>()
+                    var o = 0
+
+                    if (recipe.items_list[0] != null) {
+                        ReciList.add(recipe.items_list[0])
+
+                        for (i in 1..recipe.items_list.size - 1) {
+                            if (i == o) continue
+
+                            if (findItemByText(recipe.items_list[i + 1]) != null || i > 2) {
+                                CharList.add(recipe.items_list[i])
+                                ItemList.add(findItemByText(recipe.items_list[i + 1]) ?: Sandman.sandman().item)
+                                o = i + 1
+                            } else {
+                                ReciList.add(recipe.items_list[i])
+                            }
+                        }
+
+                        if (CharList.size != ItemList.size) {
+                            OVOMain.Logger.error("Shaped Crafting is Error!")
+                            return
+                        }
+                    }
+
+                    OVOMain.Logger.info(CharList)
+                    OVOMain.Logger.info(ItemList)
+
+                    RecipesHelper.addRecipe(ReciList, CharList, ItemList, ItemStack(findItemByText(recipe.output)))
                 }
 
                 "crafting_shapeless" -> {
-                    // val list = ArrayList<Item>()
-                    // for (i in recipe.items_list)
-                    //     list.add(findItemByText(i) ?: Sandman.sandman().item)
+                    val ItemList = ArrayList<Item>()
 
-                    val a0: Item? = if (recipe.items_list.size >= 1) findItemByText(recipe.items_list[0]) ?: Sandman.sandman().item else Sandman.missingNo() as Item?
-                    val a1: Item? = if (recipe.items_list.size >= 2) findItemByText(recipe.items_list[1]) ?: Sandman.sandman().item else Sandman.missingNo() as Item?
-                    val a2: Item? = if (recipe.items_list.size >= 3) findItemByText(recipe.items_list[2]) ?: Sandman.sandman().item else Sandman.missingNo() as Item?
-                    val a3: Item? = if (recipe.items_list.size >= 4) findItemByText(recipe.items_list[3]) ?: Sandman.sandman().item else Sandman.missingNo() as Item?
-                    val a4: Item? = if (recipe.items_list.size >= 5) findItemByText(recipe.items_list[4]) ?: Sandman.sandman().item else Sandman.missingNo() as Item?
-                    val a5: Item? = if (recipe.items_list.size >= 6) findItemByText(recipe.items_list[5]) ?: Sandman.sandman().item else Sandman.missingNo() as Item?
-                    val a6: Item? = if (recipe.items_list.size >= 7) findItemByText(recipe.items_list[6]) ?: Sandman.sandman().item else Sandman.missingNo() as Item?
-                    val a7: Item? = if (recipe.items_list.size >= 8) findItemByText(recipe.items_list[7]) ?: Sandman.sandman().item else Sandman.missingNo() as Item?
-                    val a8: Item? = if (recipe.items_list.size >= 9) findItemByText(recipe.items_list[8]) ?: Sandman.sandman().item else Sandman.missingNo() as Item?
+                    for (i in recipe.items_list) {
+                        ItemList.add(findItemByText(i) ?: Sandman.sandman().item)
+                    }
 
-                    if (recipe.items_list.size <= 1) GameRegistry.addShapelessRecipe(ItemStack(findItemByText(recipe.output)), a0)
-                    else if (recipe.items_list.size <= 2) GameRegistry.addShapelessRecipe(ItemStack(findItemByText(recipe.output)), a0, a1)
-                    else if (recipe.items_list.size <= 3) GameRegistry.addShapelessRecipe(ItemStack(findItemByText(recipe.output)), a0, a1, a2)
-                    else if (recipe.items_list.size <= 4) GameRegistry.addShapelessRecipe(ItemStack(findItemByText(recipe.output)), a0, a1, a2, a3)
-                    else if (recipe.items_list.size <= 5) GameRegistry.addShapelessRecipe(ItemStack(findItemByText(recipe.output)), a0, a1, a2, a3, a4)
-                    else if (recipe.items_list.size <= 6) GameRegistry.addShapelessRecipe(ItemStack(findItemByText(recipe.output)), a0, a1, a2, a3, a4, a5)
-                    else if (recipe.items_list.size <= 7) GameRegistry.addShapelessRecipe(ItemStack(findItemByText(recipe.output)), a0, a1, a2, a3, a4, a5, a6)
-                    else if (recipe.items_list.size <= 8) GameRegistry.addShapelessRecipe(ItemStack(findItemByText(recipe.output)), a0, a1, a2, a3, a4, a5, a6, a7)
-                    else if (recipe.items_list.size <= 9) GameRegistry.addShapelessRecipe(ItemStack(findItemByText(recipe.output)), a0, a1, a2, a3, a4, a5, a6, a7, a8)
+                    RecipesHelper.addShapelessRecipe(ItemList, ItemStack(findItemByText(recipe.output)))
                 }
 
                 "smelting" -> {
