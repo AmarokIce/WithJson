@@ -53,6 +53,12 @@ class DataProcessor(private val mod_id: String?) {
             }
         }
     }
+    private fun recipesDeletRecipe() {
+        for (item in DataList.dataDeleteRecipes) {
+            RemoveRecipes.removeFurnaceRecipes(ItemStack(item))
+            RemoveRecipes.removeItemRecipes(ItemStack(item))
+        }
+    }
 
     private fun itemDataProcessing() {
         OVOMain.Logger.info("Now create new items!")
@@ -88,51 +94,48 @@ class DataProcessor(private val mod_id: String?) {
 
         OVOMain.Logger.info("Now create new recipes!")
 
-        @Beta
         for (recipe in DataList.dataRecipes) { // TODO - It so... I don't know how to description these shit code.
             when (recipe.recipe) {
 
                 "crafting_shaped" -> {
-                    val ReciList = ArrayList<String>()
-                    val CharList = ArrayList<String>()
-                    val ItemList = ArrayList<Item>()
+                    val reciList = ArrayList<String>()
+                    val charList = ArrayList<String>()
+                    val itemList = ArrayList<Item>()
                     var o = 0
 
-                    if (recipe.items_list[0] != null) {
-                        ReciList.add(recipe.items_list[0])
+                    reciList.add(recipe.items_list[0])
 
-                        for (i in 1..recipe.items_list.size - 1) {
-                            if (i == o) continue
+                    for (i in 1..recipe.items_list.size - 1) {
+                        if (i == o) continue
 
-                            if (findItemByText(recipe.items_list[i + 1]) != null || i > 2) {
-                                CharList.add(recipe.items_list[i])
-                                ItemList.add(findItemByText(recipe.items_list[i + 1]) ?: Sandman.sandman().item)
-                                o = i + 1
-                            } else {
-                                ReciList.add(recipe.items_list[i])
-                            }
-                        }
-
-                        if (CharList.size != ItemList.size) {
-                            OVOMain.Logger.error("Shaped Crafting is Error!")
-                            return
+                        if (findItemByText(recipe.items_list[i + 1]) != null || i > 2) {
+                            charList.add(recipe.items_list[i])
+                            itemList.add(findItemByText(recipe.items_list[i + 1]) ?: Sandman.sandman().item)
+                            o = i + 1
+                        } else {
+                            reciList.add(recipe.items_list[i])
                         }
                     }
 
-                    OVOMain.Logger.info(CharList)
-                    OVOMain.Logger.info(ItemList)
+                    if (charList.size != itemList.size) {
+                        OVOMain.Logger.error("Shaped Crafting is Error!")
+                        return
+                    }
 
-                    RecipesHelper.addRecipe(ReciList, CharList, ItemList, ItemStack(findItemByText(recipe.output)))
+                    OVOMain.Logger.info(charList)
+                    OVOMain.Logger.info(itemList)
+
+                    RecipesHelper.addRecipe(reciList, charList, itemList, ItemStack(findItemByText(recipe.output)))
                 }
 
                 "crafting_shapeless" -> {
-                    val ItemList = ArrayList<Item>()
+                    val itemList = ArrayList<Item>()
 
                     for (i in recipe.items_list) {
-                        ItemList.add(findItemByText(i) ?: Sandman.sandman().item)
+                        itemList.add(findItemByText(i) ?: Sandman.sandman().item)
                     }
 
-                    RecipesHelper.addShapelessRecipe(ItemList, ItemStack(findItemByText(recipe.output)))
+                    RecipesHelper.addShapelessRecipe(itemList, ItemStack(findItemByText(recipe.output)))
                 }
 
                 "smelting" -> {

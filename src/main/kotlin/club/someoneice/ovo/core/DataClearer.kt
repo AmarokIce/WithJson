@@ -9,6 +9,9 @@ class DataClearer {
         DataList.dataItemTool.clear()
         DataList.dataItemWeapons.clear()
 
+        DataList.dataRecipes.clear()
+        DataList.dataDeleteRecipes.clear()
+
         // DataList.dataItemGift.clear()
 
     }

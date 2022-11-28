@@ -19,16 +19,17 @@ class CoreRunner {
     private val packageInfoFilePath: File = File("$basePath\\ovo_package.json")
     private var packagePathList = ArrayList<String>()
 
-    private val group   = Group()
-    private val item    = Item()
-    private val food    = ItemFoods()
-    private val gift    = ItemGifts()
-    private val tool    = ItemTools()
-    private val swords  = ItemSwords()
-    private val block   = ItemBlocks()
-    private val recipes = Recipes()
+    private val group           = Group()
+    private val item            = Item()
+    private val food            = ItemFoods()
+    private val gift            = ItemGifts()
+    private val tool            = ItemTools()
+    private val swords          = ItemSwords()
+    private val block           = ItemBlocks()
+    private val recipes         = Recipes()
+    private val delete_recipes  = DeleteRecipes()
 
-    private val JsonProcessor = JsonProcessor(group, item, block, food, gift, swords, tool, recipes)
+    private val JsonProcessor = JsonProcessor(group, item, block, food, gift, swords, tool, recipes, delete_recipes)
 
     init {
         try {
@@ -131,6 +132,15 @@ class CoreRunner {
             val fileList: Array<File> = File("${baseFile}\\Recipe").listFiles() as Array<File>
             for (i in fileList) {
                 recipes.getToolType(JsonProcessor, i)
+            }
+        }
+
+        if (File("${baseFile}\\DeleteRecipe.json").isFile) {
+            delete_recipes.getToolType(JsonProcessor, File("${baseFile}\\DeleteRecipe.json"))
+        } else if (File("${baseFile}\\DeleteRecipe").isDirectory) {
+            val fileList: Array<File> = File("${baseFile}\\DeleteRecipe").listFiles() as Array<File>
+            for (i in fileList) {
+                delete_recipes.getToolType(JsonProcessor, i)
             }
         }
     }
