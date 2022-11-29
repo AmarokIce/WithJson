@@ -9,7 +9,6 @@ import com.google.gson.reflect.TypeToken
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileReader
-import java.util.*
 
 class Group: JsonTypeHelper() {
     override fun getToolType(typeGetter: JsonTypeGetter, filePath: File) {
@@ -17,7 +16,7 @@ class Group: JsonTypeHelper() {
     }
 
     fun init(filePath: File) {
-        val type = object: TypeToken<List<Group>>() {}.type
+        val type = object: TypeToken<List<club.someoneice.ovo.data.Group>>() {}.type
 
         val gson = Gson()
         val text = StringBuffer()

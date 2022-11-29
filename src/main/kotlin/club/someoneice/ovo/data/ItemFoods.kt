@@ -1,6 +1,6 @@
 package club.someoneice.ovo.data
 
-import net.minecraft.item.Item
+import club.someoneice.ovo.IDataGem
 
 data class ItemFoods(
     val name: String,
@@ -13,4 +13,4 @@ data class ItemFoods(
     val isDrink: Boolean,
     val return_item: String,
     val group: String
-)
+): IDataGem

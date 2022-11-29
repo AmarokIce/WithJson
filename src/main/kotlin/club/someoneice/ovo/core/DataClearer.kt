@@ -8,8 +8,8 @@ class DataClearer {
         DataList.dataItemFood.clear()
         DataList.dataItemTool.clear()
         DataList.dataItemWeapons.clear()
+        DataList.dataItemGift.clear()
 
-        // DataList.dataItemGift.clear()
-
+        DataList.dataRecipe.clear()
     }
 }

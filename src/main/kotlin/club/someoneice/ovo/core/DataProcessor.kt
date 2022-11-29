@@ -2,6 +2,8 @@ package club.someoneice.ovo.core
 
 import club.someoneice.ovo.OVOMain
 import club.someoneice.ovo.data.Group
+import club.someoneice.ovo.json.data.CoreDataOutput
+import club.someoneice.ovo.json.data.helper.RecipeJsonHelper
 import club.someoneice.ovo.util.*
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
 import net.minecraft.block.AbstractBlock
@@ -21,6 +23,10 @@ class DataProcessor(private val mod_id: String?) {
         toolGroupProcessing()
         toolItemProcessing()
         toolBlockProcessing()
+        if (Info.dataMode) {
+            recipeDataProcessor()
+            // TODO - Lang...
+        }
     }
 
     private fun toolInfoProcessing() {
@@ -42,7 +48,9 @@ class DataProcessor(private val mod_id: String?) {
     }
 
     private fun toolCreateGroupHelper(group: Group): ItemGroup {
-        return FabricItemGroupBuilder.build(Identifier(Info.modid, group.name)) { ItemStack(Util.findItemByText(group.icon) ?: Items.APPLE) }
+        return FabricItemGroupBuilder.build(Identifier(Info.modid, group.name)) {
+            ItemStack(Util.findItemByText(group.icon) ?: Items.APPLE)
+        }
     }
 
     private fun toolItemProcessing() {
@@ -87,6 +95,12 @@ class DataProcessor(private val mod_id: String?) {
             for (block in DataList.dataBlock) {
                 BlockBase(AbstractBlock.Settings.of(Material.STONE).strength(block.hard), block)
             }
+        }
+    }
+
+    public fun recipeDataProcessor() {
+        for (recipe in DataList.dataRecipe) {
+            CoreDataOutput(RecipeJsonHelper(), recipe)
         }
     }
 }

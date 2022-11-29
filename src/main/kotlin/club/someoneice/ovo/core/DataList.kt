@@ -16,4 +16,6 @@ object DataList {
     var dataBlock = ArrayList<BlockData>()
 
     var dataGroup = ArrayList<Group>()
+
+    var dataRecipe = ArrayList<Recipes>()
 }

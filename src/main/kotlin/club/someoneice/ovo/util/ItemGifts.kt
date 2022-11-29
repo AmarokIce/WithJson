@@ -2,6 +2,8 @@ package club.someoneice.ovo.util
 
 import club.someoneice.ovo.core.Info
 import club.someoneice.ovo.data.ItemGift
+import club.someoneice.ovo.json.data.CoreDataOutput
+import club.someoneice.ovo.json.data.helper.ItemJsonHelper
 import club.someoneice.ovo.util.Util.findItemByText
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.player.PlayerEntity
@@ -14,6 +16,7 @@ import net.minecraft.world.World
 class ItemGifts(settings: Settings, private val itemSet: ItemGift): Item(settings) {
     init {
         Registry.register(Registry.ITEM, Identifier(Info.modid, itemSet.name), this)
+        CoreDataOutput(ItemJsonHelper(), itemSet)
     }
 
     override fun finishUsing(stack: ItemStack, world: World, user: LivingEntity): ItemStack {

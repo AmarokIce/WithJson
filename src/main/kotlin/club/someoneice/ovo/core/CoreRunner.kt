@@ -28,6 +28,7 @@ class CoreRunner {
     private val tool    = ItemTools()
     private val swords  = ItemSwords()
     private val block   = ItemBlocks()
+    private val recipes = Recipes()
 
     private val JsonProcessor = JsonProcessor(group, item, block, food, gift, swords, tool)
 
@@ -38,11 +39,12 @@ class CoreRunner {
                 Sandman.nullSandman()
             } else {
                 readerPackage()
-                init()
             }
         } catch (_: FileNotFoundException) {
             throw FileNotFoundException("package.json is not find!")
             Sandman.nullSandman()
+        } finally {
+            init()
         }
     }
 
@@ -66,11 +68,8 @@ class CoreRunner {
 
     private fun getFile(baseFile: String) {
         if (File("${baseFile}\\Group.json").isFile) {
-            OVOMain.Logger.info("Such File: ${baseFile}\\Group.json")
-            // group.getToolType(JsonProcessor, File("${baseFile}\\Group.json"))
             group.init(File("${baseFile}\\Group.json"))
         }
-
 
         if (File("${baseFile}\\Item.json").isFile) {
             item.getToolType(JsonProcessor, File("${baseFile}\\Item.json"))
@@ -125,6 +124,17 @@ class CoreRunner {
                 block.getToolType(JsonProcessor, i)
             }
         }
+
+        if (!Info.dataMode) return
+
+        if (File("${baseFile}\\Recipes.json").isFile) {
+            recipes.init(File("${baseFile}\\Recipes.json"))
+        } else if (File("${baseFile}\\Recipes").isDirectory) {
+            val fileList: Array<File> = File("${baseFile}\\Recipes").listFiles() as Array<File>
+            for (i in fileList) {
+                recipes.init(i)
+            }
+        }
     }
 
     private fun readerPackage() {
@@ -158,7 +168,12 @@ class CoreRunner {
 
             buffreader.close()
             val output: String = text.toString()
-            val infoList: HashMap<String, String> = gson.fromJson(output, (object: TypeToken<HashMap<String, String>> () {} .type) )
+            val infoList: Map<String, String> = gson.fromJson(output, (object: TypeToken<HashMap<String, String>> () {} .type) )
+            if (infoList.containsKey("data") && infoList["data"] == "true") {
+                OVOMain.Logger.info("Now will output Data!")
+                Info.dataMode = true
+            }
+
             if (infoList.containsKey("modid")) {
                 OVOMain.Logger.info("Find modid ${infoList["modid"]}")
                 return infoList["modid"]

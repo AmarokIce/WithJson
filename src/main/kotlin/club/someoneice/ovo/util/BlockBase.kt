@@ -1,10 +1,11 @@
 package club.someoneice.ovo.util
 
-import club.someoneice.ovo.OVOMain
 import club.someoneice.ovo.core.DataList
 import club.someoneice.ovo.core.Info
 import club.someoneice.ovo.data.BlockData
 import club.someoneice.ovo.json.Sandman
+import club.someoneice.ovo.json.data.CoreDataOutput
+import club.someoneice.ovo.json.data.helper.BlockJsonHelper
 import club.someoneice.ovo.util.Util.findItemByText
 import net.minecraft.block.Block
 import net.minecraft.block.BlockState
@@ -20,6 +21,8 @@ class BlockBase(settings: Settings, private val blockSet: BlockData): Block(sett
     init {
         Registry.register(Registry.BLOCK, Identifier(Info.modid, blockSet.name), this)
         Registry.register(Registry.ITEM, Identifier(Info.modid, blockSet.name), BlockItem(this, Item.Settings().group(DataList.getGroup[blockSet.group])))
+
+        CoreDataOutput(BlockJsonHelper(), blockSet)
     }
 
     override fun getDroppedStacks(state: BlockState, builder: LootContext.Builder): MutableList<ItemStack> {
