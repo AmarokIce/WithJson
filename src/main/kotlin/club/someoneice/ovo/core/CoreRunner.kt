@@ -39,12 +39,11 @@ class CoreRunner {
                 Sandman.nullSandman()
             } else {
                 readerPackage()
+                init()
             }
         } catch (_: FileNotFoundException) {
             throw FileNotFoundException("package.json is not find!")
             Sandman.nullSandman()
-        } finally {
-            init()
         }
     }
 
