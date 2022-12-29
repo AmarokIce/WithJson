@@ -14,7 +14,8 @@ class JsonProcessor(
     private val swords          : club.someoneice.ovo.json.reader.ItemSwords,
     private val tools           : club.someoneice.ovo.json.reader.ItemTools,
     private val recipes         : club.someoneice.ovo.json.reader.Recipes,
-    private val delete_recipes  : club.someoneice.ovo.json.reader.DeleteRecipes
+    private val delete_recipes  : club.someoneice.ovo.json.reader.DeleteRecipes,
+    private val biomes          : club.someoneice.ovo.json.reader.Biomes
 ): JsonTypeGetter() {
     override fun getType(typeGetter: String, filePath: File) {
         OVOMain.Logger.info("Get type: $typeGetter")
@@ -28,6 +29,7 @@ class JsonProcessor(
             "block"             -> block.init(filePath)
             "recipes"           -> recipes.init(filePath)
             "delete_recipes"    -> delete_recipes.init(filePath)
+            "biomes"            -> biomes.init(filePath)
 
             else -> Sandman.missingNo()
         }

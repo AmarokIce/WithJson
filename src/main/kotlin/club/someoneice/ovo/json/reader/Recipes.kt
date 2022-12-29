@@ -16,7 +16,7 @@ class Recipes: JsonTypeHelper() {
         typeGetter.getType("recipes", filePath)
     }
 
-    fun init(filePath: File) {
+    override fun init(filePath: File) {
         val type = object: TypeToken<List<Recipe>>() {}.type
 
         val gson = Gson()

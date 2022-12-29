@@ -28,8 +28,9 @@ class CoreRunner {
     private val block           = ItemBlocks()
     private val recipes         = Recipes()
     private val delete_recipes  = DeleteRecipes()
+    private val biomes          = Biomes()
 
-    private val JsonProcessor = JsonProcessor(group, item, block, food, gift, swords, tool, recipes, delete_recipes)
+    private val JsonProcessor = JsonProcessor(group, item, block, food, gift, swords, tool, recipes, delete_recipes, biomes)
 
     init {
         try {
@@ -141,6 +142,15 @@ class CoreRunner {
             val fileList: Array<File> = File("${baseFile}\\DeleteRecipe").listFiles() as Array<File>
             for (i in fileList) {
                 delete_recipes.getToolType(JsonProcessor, i)
+            }
+        }
+
+        if (File("${baseFile}\\Biomes.json").isFile) {
+            biomes.getToolType(JsonProcessor, File("${baseFile}\\Biomes.json"))
+        } else if (File("${baseFile}\\Biomes").isDirectory) {
+            val fileList: Array<File> = File("${baseFile}\\Biomes").listFiles() as Array<File>
+            for (i in fileList) {
+                biomes.getToolType(JsonProcessor, i)
             }
         }
     }

@@ -20,4 +20,6 @@ object DataList {
 
     var dataRecipes = ArrayList<Recipe>()
     var dataDeleteRecipes = ArrayList<Item>()
+
+    var dataBiomes = ArrayList<BiomesData>()
 }

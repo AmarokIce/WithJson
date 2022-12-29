@@ -4,16 +4,16 @@ import club.someoneice.ovo.core.DataList
 import club.someoneice.ovo.json.Sandman
 import club.someoneice.ovo.json.helper.JsonTypeGetter
 import club.someoneice.ovo.json.helper.JsonTypeHelper
-import club.someoneice.ovo.util.Util.findItemByText
+import club.someoneice.ovo.util.Util
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileReader
 
-class DeleteRecipes: JsonTypeHelper() {
+class Biomes: JsonTypeHelper() {
     override fun getToolType(typeGetter: JsonTypeGetter, filePath: File) {
-        typeGetter.getType("delete_recipes", filePath)
+        typeGetter.getType("biomes", filePath)
     }
 
     override fun init(filePath: File) {
@@ -31,10 +31,7 @@ class DeleteRecipes: JsonTypeHelper() {
 
             buffreader.close()
             val output: String = text.toString()
-            val list: List<String> = gson.fromJson(output, type)
-            for (i in list) {
-                if (findItemByText(i) != null) DataList.dataDeleteRecipes.add(findItemByText(i)!!)
-            }
+            DataList.dataBiomes = gson.fromJson(output, type)
 
         } catch (_: Exception) {
             Sandman.nullSandman()

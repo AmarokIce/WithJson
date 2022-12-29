@@ -17,7 +17,7 @@ class Group: JsonTypeHelper() {
         typeGetter.getType("group", filePath)
     }
 
-    fun init(filePath: File) {
+    override fun init(filePath: File) {
         val type = object: TypeToken<List<Group>>() {}.type
 
         val gson = Gson()

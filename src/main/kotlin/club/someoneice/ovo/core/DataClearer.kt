@@ -12,6 +12,8 @@ class DataClearer {
         DataList.dataRecipes.clear()
         DataList.dataDeleteRecipes.clear()
 
+        DataList.dataBiomes.clear()
+
         // DataList.dataItemGift.clear()
 
     }

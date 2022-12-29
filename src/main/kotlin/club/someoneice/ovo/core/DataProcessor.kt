@@ -25,6 +25,9 @@ class DataProcessor(private val mod_id: String?) {
         groupProcessing()           // Add creativeTabs. And put them in groupMap.
         itemDataProcessing()        // Add and registry the Items.
         blockDataProcessing()       // Add and registry the Blocks and BlockItems.
+        recipesDeletRecipe()        // Delete the recipes.
+        addRecipes()                // Then add new recipes.
+        addBiomes()                 // Add the biomes.
     }
 
     private fun infoProcessing() {
@@ -91,7 +94,9 @@ class DataProcessor(private val mod_id: String?) {
             }
             ItemWeapons(weapons, mate)
         }
+    }
 
+    private fun addRecipes() {
         OVOMain.Logger.info("Now create new recipes!")
 
         for (recipe in DataList.dataRecipes) { // TODO - It so... I don't know how to description these shit code.
@@ -147,7 +152,6 @@ class DataProcessor(private val mod_id: String?) {
                 }
             }
         }
-
     }
 
     private fun blockDataProcessing() {
@@ -155,6 +159,12 @@ class DataProcessor(private val mod_id: String?) {
             for (block in DataList.dataBlock) {
                 BlockBase(Material.rock, block)
             }
+        }
+    }
+
+    private fun addBiomes() {
+        for (biome in DataList.dataBiomes) {
+            BiomesBase(biome)
         }
     }
 }

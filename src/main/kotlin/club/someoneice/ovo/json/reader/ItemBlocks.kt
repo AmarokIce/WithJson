@@ -16,7 +16,7 @@ class ItemBlocks: JsonTypeHelper() {
         typeGetter.getType("block", filePath)
     }
 
-    fun init(filePath: File) {
+    override fun init(filePath: File) {
         val type = object: TypeToken<List<BlockData>>() {}.type
 
         val gson = Gson()
