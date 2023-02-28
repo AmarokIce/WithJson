@@ -8,11 +8,11 @@ Welcome to OVO!
 This is a Minecraft Mod for 1.7.10, this mod will help you use json to make Items and Blocks!
 Yes, in a update, it can run in Fabric but this readme just only for 1.7.10.
 
-If you like, look for the "Wiki file" and try by yourself can make you learn it more fast.
+If you like, look for the "example file" and try by yourself can make you learn it more fast.
 
-The File for 1.7.10.
+[The example for 1.7.10.](https://github.com/AmarokIce/WithJson/tree/master/ovo)
 
-The File for Fabric.
+[The example for Fabric.](https://github.com/AmarokIce/WithJson/tree/Fabric-1.16.5/ovo)
 
 **How to Start?**
 
