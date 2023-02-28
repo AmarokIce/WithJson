@@ -1,0 +1,26 @@
+[
+  {
+    "recipe": "smelting",
+    "output": "minecraft:apple",
+    "items_list": [
+      "minecraft:apple"
+    ]
+  },
+  {
+    "recipe": "crafting_shapeless",
+    "output": "minecraft:apple",
+    "items_list": [
+      "minecraft:apple"
+    ]
+  },
+  {
+    "recipe": "crafting_shaped",
+    "output": "minecraft:apple",
+    "items_list": [
+      "A A",
+      " B ",
+      "A", "minecraft:apple",
+      "B", "pineapple:pineapple"
+    ]
+  }
+]

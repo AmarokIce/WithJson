@@ -5,7 +5,6 @@ import club.someoneice.ovo.data.Group
 import club.someoneice.ovo.json.Sandman
 import club.someoneice.ovo.util.*
 import club.someoneice.ovo.util.Util.findItemByText
-import com.google.common.annotations.Beta
 import cpw.mods.fml.common.registry.GameRegistry
 import net.minecraft.block.material.Material
 import net.minecraft.creativetab.CreativeTabs
@@ -41,7 +40,7 @@ class DataProcessor(private val mod_id: String?) {
 
         for (group in DataList.dataGroup) {
             try {
-                DataList.getGroup.put(group.name, CreateGroup(group))
+                DataList.getGroup[group.name] = tabCreateGroup(group)
                 OVOMain.Logger.info("Create group: ${group.name} !")
             } catch (_: Exception) {
                 OVOMain.Logger.error("Cannot create the new group!")
@@ -49,13 +48,14 @@ class DataProcessor(private val mod_id: String?) {
         }
     }
 
-    private fun CreateGroup(group: Group): CreativeTabs {
+    private fun tabCreateGroup(group: Group): CreativeTabs {
         return object : CreativeTabs(group.name) {
             override fun getTabIconItem(): Item {
                 return findItemByText(group.icon) ?: Items.apple
             }
         }
     }
+
     private fun recipesDeletRecipe() {
         for (item in DataList.dataDeleteRecipes) {
             RemoveRecipes.removeFurnaceRecipes(ItemStack(item))
@@ -105,17 +105,21 @@ class DataProcessor(private val mod_id: String?) {
                 "crafting_shaped" -> {
                     val reciList = ArrayList<String>()
                     val charList = ArrayList<String>()
-                    val itemList = ArrayList<Item>()
+                    val itemList = ArrayList<Any>()
                     var o = 0
 
                     reciList.add(recipe.items_list[0])
 
-                    for (i in 1..recipe.items_list.size - 1) {
+                    for (i in 1 until recipe.items_list.size) {
                         if (i == o) continue
 
                         if (findItemByText(recipe.items_list[i + 1]) != null || i > 2) {
                             charList.add(recipe.items_list[i])
-                            itemList.add(findItemByText(recipe.items_list[i + 1]) ?: Sandman.sandman().item)
+                            if (recipe.items_list[i + 1].contains("forge:"))
+                                itemList.add(recipe.items_list[i + 1])
+                            else
+                                itemList.add(findItemByText(recipe.items_list[i + 1]) ?: Sandman.sandman().item)
+
                             o = i + 1
                         } else {
                             reciList.add(recipe.items_list[i])
@@ -134,11 +138,13 @@ class DataProcessor(private val mod_id: String?) {
                 }
 
                 "crafting_shapeless" -> {
-                    val itemList = ArrayList<Item>()
+                    val itemList = ArrayList<Any>()
 
-                    for (i in recipe.items_list) {
-                        itemList.add(findItemByText(i) ?: Sandman.sandman().item)
-                    }
+                    for (item in recipe.items_list)
+                        if (item.contains("forge:"))
+                            itemList.add(item)
+                        else
+                            itemList.add(findItemByText(item) ?: Sandman.sandman().item)
 
                     RecipesHelper.addShapelessRecipe(itemList, ItemStack(findItemByText(recipe.output)))
                 }

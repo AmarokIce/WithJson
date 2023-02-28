@@ -1,19 +1,17 @@
 package club.someoneice.ovo;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 
 import java.util.ArrayList;
 
 public class RecipesHelper {
-    public static void addShapelessRecipe(ArrayList<Item> itemList, ItemStack output) {
-        ArrayList<Object> recipeList = new ArrayList<Object>(itemList);
-
-        GameRegistry.addShapelessRecipe(output, recipeList.toArray());
+    public static void addShapelessRecipe(ArrayList<Object> itemList, ItemStack output) {
+        GameRegistry.addShapelessRecipe(output, new ArrayList<Object>(itemList).toArray());
     }
 
-    public static void addRecipe(ArrayList<String> recipe, ArrayList<String> charList, ArrayList<Item> itemList, ItemStack output) {
+    public static void addRecipe(ArrayList<String> recipe, ArrayList<String> charList, ArrayList<Object> itemList, ItemStack output) {
 
         ArrayList<Object> recipeList = new ArrayList<Object>();
 
@@ -26,6 +24,6 @@ public class RecipesHelper {
             }
         }
 
-        GameRegistry.addShapedRecipe(output, recipeList.toArray());
+        GameRegistry.addRecipe(new ShapedOreRecipe(output, recipeList.toArray()));
     }
 }

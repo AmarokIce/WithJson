@@ -1,9 +1,9 @@
 package club.someoneice.ovo.core
 
-import club.someoneice.ovo.data.helper.JsonReaderType
 import club.someoneice.ovo.json.Sandman
 import club.someoneice.ovo.json.helper.JsonProcessor
 import club.someoneice.ovo.json.reader.*
+import club.someoneice.ovo.mana.ManaMetalOVOAPI
 import com.google.common.reflect.TypeToken
 import com.google.gson.Gson
 import java.io.BufferedReader
@@ -34,16 +34,14 @@ class CoreRunner {
 
     init {
         try {
-            if (!packageInfoFilePath.isFile) {
+            if (!packageInfoFilePath.isFile)
                 OVOMain.Logger.warn("ovo_package.json is not find!")
-                Sandman.nullSandman()
-            } else {
+            else {
                 readerPackage()
                 init()
             }
         } catch (_: FileNotFoundException) {
             throw FileNotFoundException("package.json is not find!")
-            Sandman.nullSandman()
         }
     }
 
@@ -56,6 +54,8 @@ class CoreRunner {
                 OVOMain.Logger.info("Such pockage: ${basePath}\\${i}")
                 val modid: String? = readInfo(File("${basePath}\\${i}\\info.json"))
                 getFile("${basePath}\\${i}")
+
+                if (OVOMain.ManaMetalModInstall) ManaMetalOVOAPI()
 
                 DataProcessor(modid).init()
 

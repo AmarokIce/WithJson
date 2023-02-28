@@ -6,6 +6,13 @@ Welcome to OVO!
 **What This?**
 
 This is a Minecraft Mod for 1.7.10, this mod will help you use json to make Items and Blocks!
+Yes, in a update, it can run in Fabric but this readme just only for 1.7.10.
+
+If you like, look for the "Wiki file" and try by yourself can make you learn it more fast.
+
+The File for 1.7.10.
+
+The File for Fabric.
 
 **How to Start?**
 
@@ -39,7 +46,7 @@ Now custom our mod!
 Group:
 In order to prevent any player from ordering a fried rice, I did not join the vanilla group. If you need to put your items in a creation inventory, you must create a group yourself.
 
-Item ID or RegisterName all right. If you wanna to use the ICON by your self because it is a cat photo, Maybe you should make a new package to re-Read someone item.
+Item ID or RegisterName all right. If you want to use the ICON by your self because it is a cat photo, Maybe you should make a new package to re-Read someone item.
 
 ```JSON
 [
@@ -145,12 +152,50 @@ ItemGift (Bata, Don't use it if you did not know what you doing):
     "max_size": 1,
     "items": [
         "pineapple", "pineapple"
-]
+      ]
     "group": "testGroup"
 ```
 
-Recipe (It smells not good. I recommend using "ContentTweaker" or "Loot++" or whatever) :
+Recipe (It smells not good. Maybe you should try by your self.) :
+```JSON
+[
+  {
+    "recipe": "smelting",
+    "output": "minecraft:apple",
+    "items_list": [
+      "minecraft:apple"
+    ]
+  },
+  {
+    "recipe": "crafting_shapeless",
+    "output": "minecraft:apple",
+    "items_list": [
+      "minecraft:apple"
+    ]
+  },
+  {
+    "recipe": "crafting_shaped",
+    "output": "minecraft:apple",
+    "items_list": [
+      "A A",
+      " B ",
+      "A", "minecraft:apple",
+      "B", "pineapple:pineapple"
+    ]
+  },
+  {
+    "recipe": "crafting_shaped",
+    "output": "minecraft:apple",
+    "items_list": [
+      "AA",
+      "A", "minecraft:apple"
+    ]
+  }
+]
+```
 
+<br /> <br />
+<br /> <br />
 
 **License**
 
