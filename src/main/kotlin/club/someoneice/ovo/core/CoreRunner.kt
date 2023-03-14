@@ -56,7 +56,7 @@ class CoreRunner {
                 DataProcessor(modid).init()
 
                 // Now we will read the manametalmod 's recipe in this package.
-                if (OVOMain.ManaMetalModInstall) MMMCoreRunner()
+                if (OVOMain.ManaMetalModInstall) MMMCoreRunner("${basePath}\\${i}")
 
                 // Finish read this package, and now clear the DataList.
                 DataClearer()

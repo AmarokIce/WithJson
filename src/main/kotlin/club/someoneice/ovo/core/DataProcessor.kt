@@ -83,13 +83,13 @@ class DataProcessor(private val mod_id: String?) {
 
         for (weapons in DataList.dataItemWeapons) {
             val mate = when (weapons.tool_meta) {
-                "wood" -> Item.ToolMaterial.WOOD
-                "stone" -> Item.ToolMaterial.STONE
-                "iron" -> Item.ToolMaterial.WOOD
-                "gold" -> Item.ToolMaterial.GOLD
-                "diamond" -> Item.ToolMaterial.EMERALD
+                "wood"      -> Item.ToolMaterial.WOOD
+                "stone"     -> Item.ToolMaterial.STONE
+                "iron"      -> Item.ToolMaterial.WOOD
+                "gold"      -> Item.ToolMaterial.GOLD
+                "diamond"   -> Item.ToolMaterial.EMERALD
 
-                else -> Item.ToolMaterial.WOOD
+                else        -> Item.ToolMaterial.WOOD
             }
             ItemWeapons(weapons, mate)
         }
@@ -120,12 +120,14 @@ class DataProcessor(private val mod_id: String?) {
         var r = 0
         for (recipe in list) {
             val itemList = ArrayList<Any>()
-            val output: Item =
-                if (recipe.result.containsKey("item")) findItemByText(recipe.result["item"]!!) ?: return else continue
+            val output: Item = if (recipe.result.containsKey("item")) findItemByText(recipe.result["item"]!!) ?: return else continue
             for (item in recipe.ingredients!!) {
-                if (item.containsKey("item")) itemList.add(findItemByText(item["item"]!!) ?: continue)
-                if (item.containsKey("block")) itemList.add(findItemByText(item["block"]!!) ?: continue)
-                if (item.containsKey("oredict")) itemList.add(item["oredict"]!!)
+                itemList.add (
+                    if (item.containsKey("item"))           (findItemByText(item["item"]!!)  ?: continue)
+                    else if (item.containsKey("block"))     (findItemByText(item["block"]!!) ?: continue)
+                    else if (item.containsKey("oredict"))   (item["oredict"]!!)
+                    else continue
+                )
             }
 
             r += 1
@@ -142,10 +144,8 @@ class DataProcessor(private val mod_id: String?) {
             val output: Item =
                 if (recipe.result.containsKey("item")) findItemByText(recipe.result["item"]!!) ?: continue else continue
             val item =
-                if (recipe.ingredients!![0].containsKey("item")) findItemByText(recipe.ingredients[0]["item"]!!)
-                    ?: continue
-                else if (recipe.ingredients[0].containsKey("block")) findItemByText(recipe.ingredients[0]["block"]!!)
-                    ?: continue
+                if (recipe.ingredients!![0].containsKey("item")) findItemByText(recipe.ingredients[0]["item"]!!) ?: continue
+                else if (recipe.ingredients[0].containsKey("block")) findItemByText(recipe.ingredients[0]["block"]!!) ?: continue
                 else continue
 
             val i = if (recipe.result.containsKey("count")) Integer.valueOf(recipe.result["count"]) else 1
@@ -193,7 +193,7 @@ class DataProcessor(private val mod_id: String?) {
         private fun addRecipes() {
             OVOMain.Logger.info("Now create new recipes!")
 
-            for (recipe in DataList.dataRecipes) { // TODO - It so... I don't know how to description these shit code.
+            for (recipe in DataList.dataRecipes) {
                 when (recipe.type) {
 
                     "crafting_shaped" -> {

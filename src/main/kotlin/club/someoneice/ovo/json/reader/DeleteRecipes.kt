@@ -26,9 +26,7 @@ class DeleteRecipes: JsonTypeHelper() {
             reader.read(byte)
             reader.close()
 
-            val output = String(byte)
-            val list: List<String> = gson.fromJson(output, type)
-            for (i in list) {
+            for (i in gson.fromJson(String(byte), type) as List<String>) {
                 if (findItemByText(i) != null) DataList.dataDeleteRecipes.add(findItemByText(i)!!)
             }
 
