@@ -1,20 +1,15 @@
-package club.someoneice.ovo.util
+package club.someoneice.ovo.base
 
 import club.someoneice.ovo.core.DataList
 import club.someoneice.ovo.core.OVOMain
 import club.someoneice.ovo.data.BlockData
 import club.someoneice.ovo.json.Sandman
 import club.someoneice.ovo.util.Util.findItemByText
-import cpw.mods.fml.common.registry.GameRegistry
-import cpw.mods.fml.relauncher.Side
-import cpw.mods.fml.relauncher.SideOnly
+import club.someoneice.ovo.util.register
 import net.minecraft.block.Block
 import net.minecraft.block.material.Material
-import net.minecraft.client.renderer.texture.IIconRegister
 import net.minecraft.item.ItemStack
-import net.minecraft.util.IIcon
 import net.minecraft.world.World
-import java.util.*
 
 class BlockBase(material: Material, private val blockSet: BlockData): Block(material) {
     init {
@@ -28,7 +23,8 @@ class BlockBase(material: Material, private val blockSet: BlockData): Block(mate
         } else {
             OVOMain.Logger.error("${blockSet.name}'s group is in error !")
         }
-        GameRegistry.registerBlock(this, blockSet.name)
+
+        this.register(blockSet.name)
     }
 
     override fun getDrops(world: World?, x: Int, y: Int, z: Int, metadata: Int, fortune: Int): ArrayList<ItemStack> {

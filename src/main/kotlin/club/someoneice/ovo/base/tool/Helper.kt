@@ -1,4 +1,4 @@
-package club.someoneice.ovo.util.tool
+package club.someoneice.ovo.base.tool
 
 import club.someoneice.ovo.data.ItemTool
 import club.someoneice.ovo.json.Sandman

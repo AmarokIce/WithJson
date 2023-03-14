@@ -1,11 +1,11 @@
-package club.someoneice.ovo.util
+package club.someoneice.ovo.base
 
 import club.someoneice.ovo.core.DataList
 import club.someoneice.ovo.core.Info
 import club.someoneice.ovo.core.OVOMain
 import club.someoneice.ovo.data.ItemGift
 import club.someoneice.ovo.util.Util.findItemByText
-import cpw.mods.fml.common.registry.GameRegistry
+import club.someoneice.ovo.util.register
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
@@ -22,7 +22,7 @@ class ItemGifts(private val itemSet: ItemGift): Item() {
             OVOMain.Logger.error("${itemSet.name}'s group is in error !")
         }
 
-        GameRegistry.registerItem(this, itemSet.name, Info.modid)
+        this.register(itemSet.name)
     }
 
     override fun onItemUse(item: ItemStack, player: EntityPlayer, world: World, p_77648_4_: Int, p_77648_5_: Int, p_77648_6_: Int, p_77648_7_: Int, x: Float, y: Float, z: Float): Boolean {

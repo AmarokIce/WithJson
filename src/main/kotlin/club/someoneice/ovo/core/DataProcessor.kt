@@ -1,9 +1,9 @@
 package club.someoneice.ovo.core
 
 import club.someoneice.ovo.RecipesHelper
+import club.someoneice.ovo.base.*
 import club.someoneice.ovo.data.Group
 import club.someoneice.ovo.json.Sandman
-import club.someoneice.ovo.util.*
 import club.someoneice.ovo.util.Util.findItemByText
 import cpw.mods.fml.common.registry.GameRegistry
 import net.minecraft.block.material.Material
@@ -11,7 +11,6 @@ import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.init.Items
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
-import java.util.*
 
 class DataProcessor(private val mod_id: String?) {
 

@@ -3,6 +3,7 @@ package club.someoneice.ovo.core
 import club.someoneice.ovo.json.Sandman
 import club.someoneice.ovo.json.helper.JsonProcessor
 import club.someoneice.ovo.json.reader.*
+import club.someoneice.ovo.mana.MMMCoreRunner
 import club.someoneice.ovo.mana.ManaMetalOVOAPI
 import com.google.common.reflect.TypeToken
 import com.google.gson.Gson
@@ -10,8 +11,6 @@ import java.io.BufferedReader
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileReader
-import java.util.*
-import kotlin.collections.List
 
 class CoreRunner {
     private val gson: Gson = Gson()
@@ -30,7 +29,7 @@ class CoreRunner {
     private val delete_recipes  = DeleteRecipes()
     private val biomes          = Biomes()
 
-    private val JsonProcessor = JsonProcessor(group, item, block, food, gift, swords, tool, recipes, delete_recipes, biomes)
+    private val jsonProcessor = JsonProcessor(group, item, block, food, gift, swords, tool, recipes, delete_recipes, biomes)
 
     init {
         try {
@@ -59,6 +58,9 @@ class CoreRunner {
 
                 DataProcessor(modid).init()
 
+                // Now we will read the manametalmod 's recipe in this package.
+                MMMCoreRunner()
+
                 // Finish read this package, and now clear the DataList.
                 DataClearer()
             }
@@ -74,83 +76,83 @@ class CoreRunner {
 
 
         if (File("${baseFile}\\Item.json").isFile) {
-            item.getToolType(JsonProcessor, File("${baseFile}\\Item.json"))
+            item.getToolType(jsonProcessor, File("${baseFile}\\Item.json"))
         } else if (File("${baseFile}\\Item").isDirectory) {
             val fileList: Array<File> = File("${baseFile}\\Item").listFiles() as Array<File>
             for (i in fileList) {
-                item.getToolType(JsonProcessor, i)
+                item.getToolType(jsonProcessor, i)
             }
         }
 
         if (File("${baseFile}\\ItemFood.json").isFile) {
-            food.getToolType(JsonProcessor, File("${baseFile}\\ItemFood.json"))
+            food.getToolType(jsonProcessor, File("${baseFile}\\ItemFood.json"))
         } else if (File("${baseFile}\\ItemFood").isDirectory) {
             val fileList: Array<File> = File("${baseFile}\\ItemFood").listFiles() as Array<File>
             for (i in fileList) {
-                food.getToolType(JsonProcessor, i)
+                food.getToolType(jsonProcessor, i)
             }
         }
 
         if (File("${baseFile}\\ItemGift.json").isFile) {
-            gift.getToolType(JsonProcessor, File("${baseFile}\\ItemGift.json"))
+            gift.getToolType(jsonProcessor, File("${baseFile}\\ItemGift.json"))
         } else if (File("${baseFile}\\ItemGift").isDirectory) {
             val fileList: Array<File> = File("${baseFile}\\ItemGift").listFiles() as Array<File>
             for (i in fileList) {
-                gift.getToolType(JsonProcessor, i)
+                gift.getToolType(jsonProcessor, i)
             }
         }
 
         if (File("${baseFile}\\ItemTool.json").isFile) {
-            tool.getToolType(JsonProcessor, File("${baseFile}\\ItemTool.json"))
+            tool.getToolType(jsonProcessor, File("${baseFile}\\ItemTool.json"))
         } else if (File("${baseFile}\\ItemTool").isDirectory) {
             val fileList: Array<File> = File("${baseFile}\\ItemTool").listFiles() as Array<File>
             for (i in fileList) {
-                tool.getToolType(JsonProcessor, i)
+                tool.getToolType(jsonProcessor, i)
             }
         }
 
         if (File("${baseFile}\\ItemWeapons.json").isFile) {
-            swords.getToolType(JsonProcessor, File("${baseFile}\\ItemWeapons.json"))
+            swords.getToolType(jsonProcessor, File("${baseFile}\\ItemWeapons.json"))
         } else if  (File("${baseFile}\\ItemWeapons").isDirectory) {
             val fileList: Array<File> = File("${baseFile}\\ItemWeapons").listFiles() as Array<File>
             for (i in fileList) {
-                swords.getToolType(JsonProcessor, i)
+                swords.getToolType(jsonProcessor, i)
             }
         }
 
         if (File("${baseFile}\\Block.json").isFile) {
-            block.getToolType(JsonProcessor, File("${baseFile}\\Block.json"))
+            block.getToolType(jsonProcessor, File("${baseFile}\\Block.json"))
         } else if (File("${baseFile}\\Block").isDirectory) {
             val fileList: Array<File> = File("${baseFile}\\Block").listFiles() as Array<File>
             for (i in fileList) {
-                block.getToolType(JsonProcessor, i)
+                block.getToolType(jsonProcessor, i)
             }
         }
 
         if (File("${baseFile}\\Recipe.json").isFile) {
-            recipes.getToolType(JsonProcessor, File("${baseFile}\\Recipe.json"))
+            recipes.getToolType(jsonProcessor, File("${baseFile}\\Recipe.json"))
         } else if (File("${baseFile}\\Recipe").isDirectory) {
             val fileList: Array<File> = File("${baseFile}\\Recipe").listFiles() as Array<File>
             for (i in fileList) {
-                recipes.getToolType(JsonProcessor, i)
+                recipes.getToolType(jsonProcessor, i)
             }
         }
 
         if (File("${baseFile}\\DeleteRecipe.json").isFile) {
-            delete_recipes.getToolType(JsonProcessor, File("${baseFile}\\DeleteRecipe.json"))
+            delete_recipes.getToolType(jsonProcessor, File("${baseFile}\\DeleteRecipe.json"))
         } else if (File("${baseFile}\\DeleteRecipe").isDirectory) {
             val fileList: Array<File> = File("${baseFile}\\DeleteRecipe").listFiles() as Array<File>
             for (i in fileList) {
-                delete_recipes.getToolType(JsonProcessor, i)
+                delete_recipes.getToolType(jsonProcessor, i)
             }
         }
 
         if (File("${baseFile}\\Biomes.json").isFile) {
-            biomes.getToolType(JsonProcessor, File("${baseFile}\\Biomes.json"))
+            biomes.getToolType(jsonProcessor, File("${baseFile}\\Biomes.json"))
         } else if (File("${baseFile}\\Biomes").isDirectory) {
             val fileList: Array<File> = File("${baseFile}\\Biomes").listFiles() as Array<File>
             for (i in fileList) {
-                biomes.getToolType(JsonProcessor, i)
+                biomes.getToolType(jsonProcessor, i)
             }
         }
     }

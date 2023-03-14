@@ -1,4 +1,4 @@
-package club.someoneice.ovo.util
+package club.someoneice.ovo.base
 
 import club.someoneice.ovo.data.BiomesData
 import cpw.mods.fml.relauncher.Side

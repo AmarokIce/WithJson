@@ -1,8 +1,8 @@
-package club.someoneice.ovo.util
+package club.someoneice.ovo.base
 
+import club.someoneice.ovo.base.tool.*
 import club.someoneice.ovo.data.ItemTool
 import club.someoneice.ovo.json.Sandman
-import club.someoneice.ovo.util.tool.*
 
 class ItemTools(toolSet: ItemTool) {
     init {

@@ -1,7 +1,5 @@
 package club.someoneice.ovo.data
 
-import net.minecraft.item.Item
-
 data class ItemFoods(
     val name: String,
     val localization_name: String,

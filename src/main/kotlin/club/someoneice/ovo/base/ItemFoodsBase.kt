@@ -1,10 +1,10 @@
-package club.someoneice.ovo.util
+package club.someoneice.ovo.base
 
 import club.someoneice.ovo.core.DataList
 import club.someoneice.ovo.core.Info
 import club.someoneice.ovo.data.ItemFoods
 import club.someoneice.ovo.util.Util.findItemByText
-import cpw.mods.fml.common.registry.GameRegistry
+import club.someoneice.ovo.util.register
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.EnumAction
 import net.minecraft.item.ItemFood
@@ -20,7 +20,7 @@ class ItemFoodsBase(hunger: Int, saturation: Float, wolf: Boolean, private val f
             this.creativeTab = DataList.getGroup[foodSet.group]
         }
 
-        GameRegistry.registerItem(this, foodSet.name, Info.modid)
+        this.register(foodSet.name)
     }
 
     override fun getMaxItemUseDuration(items: ItemStack?): Int {

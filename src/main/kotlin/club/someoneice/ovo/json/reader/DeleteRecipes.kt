@@ -7,9 +7,8 @@ import club.someoneice.ovo.json.helper.JsonTypeHelper
 import club.someoneice.ovo.util.Util.findItemByText
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import java.io.BufferedReader
 import java.io.File
-import java.io.FileReader
+import java.nio.file.Files
 
 class DeleteRecipes: JsonTypeHelper() {
     override fun getToolType(typeGetter: JsonTypeGetter, filePath: File) {
@@ -20,17 +19,14 @@ class DeleteRecipes: JsonTypeHelper() {
         val type = object: TypeToken<List<String>>() {}.type
 
         val gson = Gson()
-        val text = StringBuffer()
-        val buffreader = BufferedReader(FileReader(filePath))
+        val reader = Files.newInputStream(filePath.toPath())
 
         try {
-            while (true) {
-                val str = buffreader.readLine()
-                if (str == null) break else text.append(str.toString())
-            }
+            val byte = ByteArray(filePath.length().toInt())
+            reader.read(byte)
+            reader.close()
 
-            buffreader.close()
-            val output: String = text.toString()
+            val output = String(byte)
             val list: List<String> = gson.fromJson(output, type)
             for (i in list) {
                 if (findItemByText(i) != null) DataList.dataDeleteRecipes.add(findItemByText(i)!!)

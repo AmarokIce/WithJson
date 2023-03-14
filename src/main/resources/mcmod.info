@@ -11,6 +11,6 @@
   "credits": "Someoneice",
   "logoFile": "",
   "screenshots": [],
-  "dependencies": ["required-after:legacymckotlin"]
+  "dependencies": []
 }
 ]

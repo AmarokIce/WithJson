@@ -1,11 +1,11 @@
 package club.someoneice.ovo.core
 
+import alexsocol.patcher.KotlinAdapter
 import cpw.mods.fml.common.Mod
 import cpw.mods.fml.common.event.FMLInitializationEvent
 import org.apache.logging.log4j.LogManager
 
-
-@Mod(modid = OVOMain.modid, version = OVOMain.VERSION, dependencies = "required-after:legacymckotlin;required-after:manametalmod")
+@Mod(modid = OVOMain.modid, version = OVOMain.VERSION, modLanguageAdapter = KotlinAdapter.className, dependencies = "required-after:manametalmod")
 class OVOMain {
     companion object {
         const val modid: String = "ovo"
@@ -30,6 +30,4 @@ class OVOMain {
 
         CoreRunner()
     }
-
-
 }

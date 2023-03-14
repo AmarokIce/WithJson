@@ -1,13 +1,13 @@
-package club.someoneice.ovo.util.tool
+package club.someoneice.ovo.base
 
 import club.someoneice.ovo.core.DataList
 import club.someoneice.ovo.core.Info
 import club.someoneice.ovo.core.OVOMain
-import club.someoneice.ovo.data.ItemTool
-import cpw.mods.fml.common.registry.GameRegistry
-import net.minecraft.item.ItemSpade
+import club.someoneice.ovo.data.ItemKnife
+import club.someoneice.ovo.util.register
+import net.minecraft.item.ItemSword
 
-class ItemShovels(toolMate: ToolMaterial, toolSet: ItemTool): ItemSpade(toolMate) {
+class ItemWeapons(toolSet: ItemKnife, toolMate: ToolMaterial?): ItemSword(toolMate) {
     init {
         this.unlocalizedName = toolSet.localization_name
         this.setTextureName("${Info.modid}:${toolSet.texture_name}")
@@ -15,6 +15,6 @@ class ItemShovels(toolMate: ToolMaterial, toolSet: ItemTool): ItemSpade(toolMate
         if (DataList.getGroup.containsKey(toolSet.group)) this.creativeTab = DataList.getGroup[toolSet.group]
         else OVOMain.Logger.error("${toolSet.name}'s group is in error !")
 
-        GameRegistry.registerItem(this, toolSet.name, Info.modid)
+        this.register(toolSet.name)
     }
 }

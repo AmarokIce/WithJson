@@ -1,13 +1,13 @@
 package club.someoneice.ovo.core
 
 import net.minecraft.item.ItemStack
-import net.minecraft.item.crafting.IRecipe
 import net.minecraft.item.crafting.CraftingManager
 import net.minecraft.item.crafting.FurnaceRecipes
+import net.minecraft.item.crafting.IRecipe
 
 object RemoveRecipes {
     fun removeItemRecipes(item: ItemStack?) {
-        val recipes: MutableList<IRecipe?> = CraftingManager.getInstance().recipeList as MutableList<IRecipe?>
+        val recipes: ArrayList<IRecipe?> = CraftingManager.getInstance().recipeList as ArrayList<IRecipe?>
         var i = 0
         while (i < recipes.size) {
             val tmpRecipe = recipes[i]
@@ -18,7 +18,7 @@ object RemoveRecipes {
     }
 
     fun removeFurnaceRecipes(item: ItemStack) {
-        val recipes: MutableMap<ItemStack, ItemStack> = FurnaceRecipes.smelting().smeltingList as MutableMap<ItemStack, ItemStack>
+        val recipes: HashMap<ItemStack, ItemStack> = FurnaceRecipes.smelting().smeltingList as HashMap<ItemStack, ItemStack>
         val iterator: Iterator<*> = recipes.entries.iterator()
         var entry: Map.Entry<*, *>
         do {

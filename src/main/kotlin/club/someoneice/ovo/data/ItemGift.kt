@@ -1,7 +1,6 @@
 package club.someoneice.ovo.data
 
 import club.someoneice.ovo.data.helper.ItemGiftHelper
-import java.util.*
 
 data class ItemGift(
     val name: String,

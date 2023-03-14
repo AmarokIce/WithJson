@@ -3,10 +3,9 @@ package club.someoneice.ovo.core
 import club.someoneice.ovo.data.*
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.item.Item
-import java.util.*
 
 object DataList {
-    var getGroup: HashMap<String, CreativeTabs> = HashMap<String, CreativeTabs>()
+    var getGroup = HashMap<String, CreativeTabs>()
 
     var dataItem = ArrayList<ItemData>()
     var dataItemGift = ArrayList<ItemGift>()

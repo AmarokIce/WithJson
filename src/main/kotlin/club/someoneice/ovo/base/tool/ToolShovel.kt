@@ -1,14 +1,14 @@
-package club.someoneice.ovo.util.tool
+package club.someoneice.ovo.base.tool
 
 import club.someoneice.ovo.data.ItemTool
 import net.minecraft.item.Item
 
-class ToolAxe: ToolTypeMain() {
+class ToolShovel: ToolTypeMain() {
     override fun getToolType(typeGetter: ToolTypeGetter) {
-        typeGetter.getType("axe")
+        typeGetter.getType("shovel")
     }
 
     fun toolInit(toolSet: ItemTool, toolMate: Item.ToolMaterial) {
-        ItemAxes(toolMate, toolSet)
+        ItemShovels(toolMate, toolSet)
     }
 }
