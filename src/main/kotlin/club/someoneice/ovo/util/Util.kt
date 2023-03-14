@@ -1,7 +1,6 @@
 package club.someoneice.ovo.util
 
 import club.someoneice.ovo.core.Info
-import club.someoneice.ovo.json.Sandman
 import cpw.mods.fml.common.registry.GameRegistry
 import net.minecraft.block.Block
 import net.minecraft.item.Item
@@ -12,19 +11,10 @@ import javax.annotation.Nullable
 object Util {
 
     @Nullable
-    fun findItemByText(Item: String): Item? {
-        if (Item == "null") return null
-        var item: Item? = net.minecraft.item.Item.itemRegistry.getObject(Item) as Item?
-
-        if (item == null) {
-            try {
-                item = net.minecraft.item.Item.getItemById(Integer.valueOf(Item))
-            } catch (_: NumberFormatException) {
-                Sandman.nullSandman()
-            }
-        }
-
-        return item
+    fun findItemByText(itemName: String): Item? {
+        if (itemName == "null") return null
+        return Item.itemRegistry.getObject(itemName) as Item? ?: Item.getItemById(Integer.valueOf(itemName)) ?:
+               Item.getItemFromBlock(Block.getBlockFromName(itemName)) ?: Item.getItemFromBlock(Block.getBlockById(Integer.valueOf(itemName)))
     }
 }
 

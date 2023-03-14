@@ -5,14 +5,14 @@ import cpw.mods.fml.common.Mod
 import cpw.mods.fml.common.event.FMLInitializationEvent
 import org.apache.logging.log4j.LogManager
 
-@Mod(modid = OVOMain.modid, version = OVOMain.VERSION, modLanguageAdapter = KotlinAdapter.className, dependencies = "required-after:manametalmod")
+@Mod(modid = OVOMain.modid, version = OVOMain.VERSION, modLanguageAdapter = KotlinAdapter.className, dependencies = "after:manametalmod")
 class OVOMain {
     companion object {
         const val modid: String = "ovo"
-        const val VERSION: String = "0.0.3"
+        const val VERSION: String = "0.1.0"
         val ManaMetalModInstall: Boolean = getManaMetalMod();
 
-        var Logger = LogManager.getLogger("ovo")
+        var Logger = LogManager.getLogger("WithJson")
 
         private fun getManaMetalMod(): Boolean {
             return try {
