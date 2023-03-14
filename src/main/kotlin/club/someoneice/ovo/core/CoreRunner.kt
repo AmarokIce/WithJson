@@ -4,7 +4,6 @@ import club.someoneice.ovo.json.Sandman
 import club.someoneice.ovo.json.helper.JsonProcessor
 import club.someoneice.ovo.json.reader.*
 import club.someoneice.ovo.mana.MMMCoreRunner
-import club.someoneice.ovo.mana.ManaMetalOVOAPI
 import com.google.common.reflect.TypeToken
 import com.google.gson.Gson
 import java.io.BufferedReader
@@ -54,12 +53,10 @@ class CoreRunner {
                 val modid: String? = readInfo(File("${basePath}\\${i}\\info.json"))
                 getFile("${basePath}\\${i}")
 
-                if (OVOMain.ManaMetalModInstall) ManaMetalOVOAPI()
-
                 DataProcessor(modid).init()
 
                 // Now we will read the manametalmod 's recipe in this package.
-                MMMCoreRunner()
+                if (OVOMain.ManaMetalModInstall) MMMCoreRunner()
 
                 // Finish read this package, and now clear the DataList.
                 DataClearer()
