@@ -1,0 +1,30 @@
+[
+  {
+    "name": "pineapple",
+    "localization_name": "pineapple",
+    "texture_name": "pineapple",
+    "max_size": 64,
+    "hunger": 6,
+    "saturation": 0.5,
+    "wolf": true,
+    "always_eat": false,
+    "fast_food": false,
+    "isDrink": false,
+    "return_item": "null",
+    "group": "pineappleGroup"
+  },
+  {
+    "name": "pineapple_pie",
+    "localization_name": "pineapple_pie",
+    "texture_name": "pineapple_pie",
+    "max_size": 16,
+    "hunger": 3,
+    "saturation": 0.4,
+    "wolf": true,
+    "always_eat": false,
+    "fast_food": false,
+    "isDrink": false,
+    "return_item": "null",
+    "group": "pineappleGroup"
+  }
+]

@@ -1,0 +1,14 @@
+[
+  {
+    "type": "manametalmod:ManaMetalInjection",
+    "item": "manametalmod:BlockTileEntityBossSpawns"
+  },
+  {
+    "type": "manametalmod:ManaCraftTable",
+    "item": "manametalmod:ManaEnergyGenerator1"
+  },
+  {
+    "type": "manametalmod:MetalCraftTable",
+    "item": "manametalmod:ingotAncientThulium"
+  }
+]

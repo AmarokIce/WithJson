@@ -1,0 +1,9 @@
+[
+  {
+    "name": "pineapple_sword",
+    "localization_name": "pineapple_sword",
+    "texture_name": "pineapple_sword",
+    "tool_meta": "gold",
+    "group": "pineappleGroup"
+  }
+]
