@@ -1,8 +1,8 @@
 package club.someoneice.ovo.core
 
 import club.someoneice.ovo.json.Sandman
-import club.someoneice.ovo.json.helper.JsonProcessor
 import club.someoneice.ovo.json.reader.*
+
 import club.someoneice.ovo.mana.MMMCoreRunner
 import com.google.common.reflect.TypeToken
 import com.google.gson.Gson
@@ -27,8 +27,6 @@ class CoreRunner {
     private val recipes         = Recipes()
     private val delete_recipes  = DeleteRecipes()
     private val biomes          = Biomes()
-
-    private val jsonProcessor = JsonProcessor(group, item, block, food, gift, swords, tool, recipes, delete_recipes, biomes)
 
     init {
         try {
@@ -67,109 +65,90 @@ class CoreRunner {
     private fun getFile(baseFile: String) {
         if (File("${baseFile}\\Group.json").isFile) {
             OVOMain.Logger.info("Such File: ${baseFile}\\Group.json")
-            // group.getToolType(JsonProcessor, File("${baseFile}\\Group.json"))
+            // group.init(File("${baseFile}\\Group.json"))
             group.init(File("${baseFile}\\Group.json"))
         }
 
 
         if (File("${baseFile}\\Item.json").isFile) {
-            item.getToolType(jsonProcessor, File("${baseFile}\\Item.json"))
+            item.init(File("${baseFile}\\Item.json"))
         } else if (File("${baseFile}\\Item").isDirectory) {
             val fileList: Array<File> = File("${baseFile}\\Item").listFiles() as Array<File>
             for (i in fileList) {
-                item.getToolType(jsonProcessor, i)
+                item.init(i)
             }
         }
 
         if (File("${baseFile}\\ItemFood.json").isFile) {
-            food.getToolType(jsonProcessor, File("${baseFile}\\ItemFood.json"))
+            food.init(File("${baseFile}\\ItemFood.json"))
         } else if (File("${baseFile}\\ItemFood").isDirectory) {
             val fileList: Array<File> = File("${baseFile}\\ItemFood").listFiles() as Array<File>
             for (i in fileList) {
-                food.getToolType(jsonProcessor, i)
+                food.init(i)
             }
         }
 
         if (File("${baseFile}\\ItemGift.json").isFile) {
-            gift.getToolType(jsonProcessor, File("${baseFile}\\ItemGift.json"))
+            gift.init(File("${baseFile}\\ItemGift.json"))
         } else if (File("${baseFile}\\ItemGift").isDirectory) {
             val fileList: Array<File> = File("${baseFile}\\ItemGift").listFiles() as Array<File>
             for (i in fileList) {
-                gift.getToolType(jsonProcessor, i)
+                gift.init(i)
             }
         }
 
         if (File("${baseFile}\\ItemTool.json").isFile) {
-            tool.getToolType(jsonProcessor, File("${baseFile}\\ItemTool.json"))
+            tool.init(File("${baseFile}\\ItemTool.json"))
         } else if (File("${baseFile}\\ItemTool").isDirectory) {
             val fileList: Array<File> = File("${baseFile}\\ItemTool").listFiles() as Array<File>
             for (i in fileList) {
-                tool.getToolType(jsonProcessor, i)
+                tool.init(i)
             }
         }
 
         if (File("${baseFile}\\ItemWeapons.json").isFile) {
-            swords.getToolType(jsonProcessor, File("${baseFile}\\ItemWeapons.json"))
-        } else if  (File("${baseFile}\\ItemWeapons").isDirectory) {
+            swords.init(File("${baseFile}\\ItemWeapons.json"))
+        } else if (File("${baseFile}\\ItemWeapons").isDirectory) {
             val fileList: Array<File> = File("${baseFile}\\ItemWeapons").listFiles() as Array<File>
             for (i in fileList) {
-                swords.getToolType(jsonProcessor, i)
+                swords.init(i)
             }
         }
 
         if (File("${baseFile}\\Block.json").isFile) {
-            block.getToolType(jsonProcessor, File("${baseFile}\\Block.json"))
+            block.init(File("${baseFile}\\Block.json"))
         } else if (File("${baseFile}\\Block").isDirectory) {
             val fileList: Array<File> = File("${baseFile}\\Block").listFiles() as Array<File>
             for (i in fileList) {
-                block.getToolType(jsonProcessor, i)
+                block.init(i)
             }
         }
 
         if (File("${baseFile}\\Recipe.json").isFile) {
-            recipes.getToolType(jsonProcessor, File("${baseFile}\\Recipe.json"))
+            recipes.init(File("${baseFile}\\Recipe.json"))
         } else if (File("${baseFile}\\Recipe").isDirectory) {
             val fileList: Array<File> = File("${baseFile}\\Recipe").listFiles() as Array<File>
             for (i in fileList) {
-                recipes.getToolType(jsonProcessor, i)
+                recipes.init(i)
             }
         }
 
         if (File("${baseFile}\\DeleteRecipe.json").isFile) {
-            delete_recipes.getToolType(jsonProcessor, File("${baseFile}\\DeleteRecipe.json"))
+            delete_recipes.init(File("${baseFile}\\DeleteRecipe.json"))
         } else if (File("${baseFile}\\DeleteRecipe").isDirectory) {
             val fileList: Array<File> = File("${baseFile}\\DeleteRecipe").listFiles() as Array<File>
             for (i in fileList) {
-                delete_recipes.getToolType(jsonProcessor, i)
+                delete_recipes.init(i)
             }
         }
 
         if (File("${baseFile}\\Biomes.json").isFile) {
-            biomes.getToolType(jsonProcessor, File("${baseFile}\\Biomes.json"))
+            biomes.init(File("${baseFile}\\Biomes.json"))
         } else if (File("${baseFile}\\Biomes").isDirectory) {
             val fileList: Array<File> = File("${baseFile}\\Biomes").listFiles() as Array<File>
             for (i in fileList) {
-                biomes.getToolType(jsonProcessor, i)
+                biomes.init(i)
             }
-        }
-    }
-
-    private fun readerPackage() {
-        val text = StringBuffer()
-        val buffreader = BufferedReader(FileReader(packageInfoFilePath))
-
-        try {
-            while (true) {
-                val str = buffreader.readLine()
-                if (str == null) break else text.append(str.toString())
-            }
-
-            buffreader.close()
-            val output: String = text.toString()
-            packagePathList = gson.fromJson(output, (object: TypeToken<List<String>> () {} .type) )
-
-        } catch (_: Exception) {
-            Sandman.nullSandman()
         }
     }
 
@@ -185,7 +164,8 @@ class CoreRunner {
 
             buffreader.close()
             val output: String = text.toString()
-            val infoList: HashMap<String, String> = gson.fromJson(output, (object: TypeToken<HashMap<String, String>> () {} .type) )
+            val infoList: HashMap<String, String> =
+                gson.fromJson(output, (object : TypeToken<HashMap<String, String>>() {}.type))
             if (infoList.containsKey("modid")) {
                 OVOMain.Logger.info("Find modid ${infoList["modid"]}")
                 return infoList["modid"]
@@ -196,5 +176,24 @@ class CoreRunner {
         }
 
         return Sandman.missingNo() as String?
+    }
+
+    private fun readerPackage() {
+        val text = StringBuffer()
+        val buffreader = BufferedReader(FileReader(packageInfoFilePath))
+
+        try {
+            while (true) {
+                val str = buffreader.readLine()
+                if (str == null) break else text.append(str.toString())
+            }
+
+            buffreader.close()
+            val output: String = text.toString()
+            packagePathList = gson.fromJson(output, (object : TypeToken<List<String>>() {}.type))
+
+        } catch (_: Exception) {
+            Sandman.nullSandman()
+        }
     }
 }

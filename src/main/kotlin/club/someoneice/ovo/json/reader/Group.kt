@@ -1,21 +1,15 @@
 package club.someoneice.ovo.json.reader
 
-import club.someoneice.ovo.core.DataList
 import club.someoneice.ovo.core.OVOMain
+import club.someoneice.ovo.core.obj.DataList
 import club.someoneice.ovo.data.Group
-import club.someoneice.ovo.json.helper.JsonTypeGetter
-import club.someoneice.ovo.json.helper.JsonTypeHelper
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.File
 import java.nio.file.Files
 
-class Group: JsonTypeHelper() {
-    override fun getToolType(typeGetter: JsonTypeGetter, filePath: File) {
-        typeGetter.getType("group", filePath)
-    }
-
-    override fun init(filePath: File) {
+class Group {
+    fun init(filePath: File) {
         val type = object: TypeToken<List<Group>>() {}.type
 
         val gson = Gson()

@@ -1,7 +1,7 @@
 package club.someoneice.ovo.base
 
-import club.someoneice.ovo.core.DataList
-import club.someoneice.ovo.core.Info
+import club.someoneice.ovo.core.obj.DataList
+import club.someoneice.ovo.core.obj.Info
 import club.someoneice.ovo.core.OVOMain
 import club.someoneice.ovo.data.ItemGift
 import club.someoneice.ovo.util.Util.findItemByText

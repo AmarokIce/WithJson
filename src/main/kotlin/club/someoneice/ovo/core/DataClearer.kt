@@ -1,5 +1,7 @@
 package club.someoneice.ovo.core
 
+import club.someoneice.ovo.core.obj.DataList
+
 class DataClearer {
     init {
         DataList.dataItem.clear()
