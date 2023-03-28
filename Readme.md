@@ -447,7 +447,7 @@ Oh no! Too bad! But now you can take it easy, because I will remind you somethin
 > **Missing "info.json" or you didn't make your ovopackage in "info.json"** <br />
 > Make sure your ovopackage's name is right put in "info.json".
 >
-> **I really sure it's WithJson make it broken!**
+> **I really sure it's WithJson make it broken!** <br />
 > Send an Issues to report this will make WithJson do better! Thank you! :)
 >
 

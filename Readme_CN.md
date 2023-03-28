@@ -255,7 +255,7 @@ file: itemtest2.json
 
 ### **食谱**
 命名 `Recipe.json` (如果是文件夹, `Recipe`)<br />
-如果食谱中有一些问题，可能会导致游戏崩溃。
+如果食谱中有一些问题，可能会导致游戏崩溃。<br />
 **旧样式** <br />
 在WithJson 0.1.0之前，所有食谱必须食用旧样式的。
 ```Json
@@ -296,7 +296,7 @@ file: itemtest2.json
 ]
 ```
 
-**New** <br />
+**新样式** <br />
 0.1.0, 现在Recipe.json看起来更像数据包了。
 ```Json
 [
@@ -447,7 +447,7 @@ dir: pineapple
 > 请确定ovopackage已经被登记了。
 > <br />
 >
-> **我很确定是WithJson的问题！**
+> **我很确定是WithJson的问题！** <br />
 > 提交一份Issues能够帮助WithJson做的更好！非常感谢你! :)
 >
 

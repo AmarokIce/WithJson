@@ -255,7 +255,7 @@ file: itemtest2.json
 
 ### **食譜**
 命名為 `Recipe.json` (如果是資料夾, `Recipe`)<br />
-如果食譜中有任何錯誤，可能會直接導致遊戲崩潰。
+如果食譜中有任何錯誤，可能會直接導致遊戲崩潰。 <br />
 **舊版** <br />
 在WithJson 0.1.0之前，所有的食譜必須使用舊版。
 ```Json
@@ -296,7 +296,7 @@ file: itemtest2.json
 ]
 ```
 
-**New** <br />
+**新版** <br />
 0.1.0, 現在Recipes.json看起來更像數據包了。
 ```Json
 [
@@ -447,7 +447,7 @@ dir: pineapple
 > 請確定ovopackage是被登記的。
 > <br />
 >
-> **我很確定是WithJson的問題！**
+> **我很確定是WithJson的問題！** <br />
 > 提交一份Issues會讓WithJson做的更好！感激不盡! :)
 >
 
