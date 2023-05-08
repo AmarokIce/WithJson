@@ -3,7 +3,7 @@
   "modid": "ovo",
   "name": "With Json",
   "description": "A mod for minecraft, and now you can use json to make more Items!",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
@@ -11,6 +11,6 @@
   "credits": "Someoneice",
   "logoFile": "",
   "screenshots": [],
-  "dependencies": []
+  "dependencies": ["after:manametalmod"]
 }
 ]

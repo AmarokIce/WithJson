@@ -1,4 +1,4 @@
-package club.someoneice.ovo.core.obj
+package club.someoneice.ovo.core.`object`
 
 import net.minecraft.item.ItemStack
 import net.minecraft.item.crafting.CraftingManager

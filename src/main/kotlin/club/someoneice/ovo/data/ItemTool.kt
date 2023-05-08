@@ -3,9 +3,9 @@ package club.someoneice.ovo.data
 
 data class ItemTool(
     val name: String,
-    val localization_name: String,
-    val texture_name: String,
+    val localization_name: String = name,
+    val texture_name: String      = name,
     val toolkit: String,
-    val tool_meta: String,
-    val group: String
+    val tool_meta: String         = "wood",
+    val group: String             = "null"
 )

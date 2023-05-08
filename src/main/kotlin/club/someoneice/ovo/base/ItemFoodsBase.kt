@@ -1,8 +1,7 @@
 package club.someoneice.ovo.base
 
-import club.someoneice.ovo.core.obj.DataList
-import club.someoneice.ovo.core.obj.Info
-import club.someoneice.ovo.data.ItemFoods
+import club.someoneice.ovo.core.`object`.DataList
+import club.someoneice.ovo.core.`object`.Info
 import club.someoneice.ovo.util.Util.findItemByText
 import club.someoneice.ovo.util.register
 import net.minecraft.entity.player.EntityPlayer
@@ -11,7 +10,7 @@ import net.minecraft.item.ItemFood
 import net.minecraft.item.ItemStack
 import net.minecraft.world.World
 
-class ItemFoodsBase(hunger: Int, saturation: Float, wolf: Boolean, private val foodSet: ItemFoods): ItemFood(hunger, saturation, wolf) {
+class ItemFoodsBase(hunger: Int, saturation: Float, wolf: Boolean, private val foodSet: club.someoneice.ovo.data.ItemFood): ItemFood(hunger, saturation, wolf) {
     init {
         if (foodSet.always_eat) this.setAlwaysEdible()
         this.unlocalizedName = foodSet.localization_name

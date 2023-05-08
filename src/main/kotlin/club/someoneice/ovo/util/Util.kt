@@ -1,20 +1,19 @@
 package club.someoneice.ovo.util
 
-import club.someoneice.ovo.core.obj.Info
+import club.someoneice.ovo.core.`object`.Info
 import cpw.mods.fml.common.registry.GameRegistry
 import net.minecraft.block.Block
 import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import project.studio.manametalmod.core.ItemStackOre
-import javax.annotation.Nullable
 
 object Util {
-
-    @Nullable
     fun findItemByText(itemName: String): Item? {
-        if (itemName == "null") return null
-        return Item.itemRegistry.getObject(itemName) as Item? ?: Item.getItemById(Integer.valueOf(itemName)) ?:
-               Item.getItemFromBlock(Block.getBlockFromName(itemName)) ?: Item.getItemFromBlock(Block.getBlockById(Integer.valueOf(itemName)))
+        return Item.itemRegistry.getObject(itemName) as Item? ?: Item.getItemFromBlock(Block.getBlockFromName(itemName))
+    }
+
+    fun findBlockByText(blockName: String): Item? {
+        return Item.getItemFromBlock(Block.getBlockFromName(blockName))
     }
 }
 
@@ -27,7 +26,7 @@ fun Item.register(name: String) {
 }
 
 fun Item.itemStack(): ItemStack {
-    return ItemStack(this);
+    return ItemStack(this)
 }
 
 fun Block.itemStack(): ItemStack {
@@ -36,6 +35,11 @@ fun Block.itemStack(): ItemStack {
 
 fun ItemStack.ore(): ItemStackOre {
     return ItemStackOre(this)
+}
+
+fun ItemStack.setSize(size: Int): ItemStack {
+    this.stackSize = size
+    return this
 }
 
 fun Item.ore(): ItemStackOre {

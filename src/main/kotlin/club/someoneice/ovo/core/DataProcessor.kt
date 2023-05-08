@@ -2,12 +2,13 @@ package club.someoneice.ovo.core
 
 import club.someoneice.ovo.RecipesHelper
 import club.someoneice.ovo.base.*
-import club.someoneice.ovo.core.obj.DataList
-import club.someoneice.ovo.core.obj.Info
-import club.someoneice.ovo.core.obj.RemoveRecipes
+import club.someoneice.ovo.core.`object`.DataList
+import club.someoneice.ovo.core.`object`.Info
+import club.someoneice.ovo.core.`object`.RemoveRecipes
 import club.someoneice.ovo.data.Group
 import club.someoneice.ovo.data.Recipe
 import club.someoneice.ovo.util.Util.findItemByText
+import club.someoneice.ovo.util.itemStack
 import cpw.mods.fml.common.registry.GameRegistry
 import net.minecraft.block.material.Material
 import net.minecraft.creativetab.CreativeTabs
@@ -59,9 +60,10 @@ class DataProcessor(private val mod_id: String?) {
     }
 
     private fun recipesDeletRecipe() {
-        for (item in DataList.dataDeleteRecipes) {
-            RemoveRecipes.removeFurnaceRecipes(ItemStack(item))
-            RemoveRecipes.removeItemRecipes(ItemStack(item))
+        for (itemName in DataList.dataDeleteRecipes) {
+            val item = findItemByText(itemName) ?: continue
+            RemoveRecipes.removeFurnaceRecipes(item.itemStack())
+            RemoveRecipes.removeItemRecipes(item.itemStack())
         }
     }
 

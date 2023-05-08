@@ -1,6 +1,7 @@
 package club.someoneice.ovo.mana
 
 import club.someoneice.ovo.util.ore
+import net.minecraft.item.Item
 import net.minecraft.item.ItemStack
 import project.studio.manametalmod.Lapuda.IGoldItem
 import project.studio.manametalmod.ManaMetalAPI.*
@@ -32,7 +33,6 @@ object OVOMMMAPI {
 
 
     /* Add Recipes */
-
     fun addManaMetalInjectionRecipeList(list: ArrayList<ItemStack>, output: ItemStack) {
         ManaMetalInjectionRecipeList.add(arrayOf(list[0], list[1], list[2], list[3], list[4], list[5], list[6], list[7], list[8], output))
     }
@@ -68,35 +68,17 @@ object OVOMMMAPI {
 
     /* Delete Recipes */
 
-    fun deleteRecipesInManaMetalInjection(list: List<ItemStack>) {
-        var count = 0
-        for (i in 0 until ManaMetalInjectionRecipeList.size) {
-            if (count >= list.size) return
-            if (list.contains(ManaMetalInjectionRecipeList[i][10])) {
-                ManaMetalInjectionRecipeList.removeAt(i)
-                count += 1
-            }
+    fun deleteRecipesInManaMetalInjection(item: Item) {
+        for (i in ManaMetalInjectionRecipeList.size - 1 downTo 0)
+            if (ManaMetalInjectionRecipeList[i][9].item == item) ManaMetalInjectionRecipeList.removeAt(i)
         }
-    }
-    fun deleteRecipesInManaCraftTable(list: List<ItemStack>) {
-        var count = 0
-        for (i in 0 until ManaCraftTableRecipes.size) {
-            if (count >= list.size) return
-            if (list.contains(ManaCraftTableRecipes[i].items[10])) {
-                ManaCraftTableRecipes.removeAt(i)
-                count += 1
-            }
-        }
+    fun deleteRecipesInManaCraftTable(item: Item) {
+        for (i in ManaCraftTableRecipes.size - 1 downTo 0)
+            if (ManaCraftTableRecipes[i].items[9].item == item) ManaCraftTableRecipes.removeAt(i)
     }
 
-    fun deleteRecipesInMetalCraftTable(list: List<ItemStack>) {
-        var count = 0
-        for (i in 0 until MetalCraftTableRecipes.size) {
-            if (count >= list.size) return
-            if (list.contains(MetalCraftTableRecipes[i].items[10])) {
-                MetalCraftTableRecipes.removeAt(i)
-                count += 1
-            }
-        }
+    fun deleteRecipesInMetalCraftTable(item: Item) {
+        for (i in MetalCraftTableRecipes.size - 1 downTo 0)
+            if (MetalCraftTableRecipes[i].items[9].item == item) MetalCraftTableRecipes.removeAt(i)
     }
 }

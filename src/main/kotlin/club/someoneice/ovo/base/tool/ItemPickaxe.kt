@@ -1,8 +1,8 @@
 package club.someoneice.ovo.base.tool
 
-import club.someoneice.ovo.core.obj.DataList
-import club.someoneice.ovo.core.obj.Info
 import club.someoneice.ovo.core.OVOMain
+import club.someoneice.ovo.core.`object`.DataList
+import club.someoneice.ovo.core.`object`.Info
 import club.someoneice.ovo.data.ItemTool
 import club.someoneice.ovo.util.register
 import net.minecraft.item.ItemPickaxe

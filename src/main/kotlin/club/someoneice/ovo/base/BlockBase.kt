@@ -1,11 +1,11 @@
 package club.someoneice.ovo.base
 
-import club.someoneice.ovo.core.obj.DataList
 import club.someoneice.ovo.core.OVOMain
+import club.someoneice.ovo.core.`object`.DataList
 import club.someoneice.ovo.data.BlockData
-import club.someoneice.ovo.json.Sandman
 import club.someoneice.ovo.util.Util.findItemByText
 import club.someoneice.ovo.util.register
+import com.google.common.collect.Lists
 import net.minecraft.block.Block
 import net.minecraft.block.material.Material
 import net.minecraft.item.ItemStack
@@ -28,9 +28,9 @@ class BlockBase(material: Material, private val blockSet: BlockData): Block(mate
     }
 
     override fun getDrops(world: World?, x: Int, y: Int, z: Int, metadata: Int, fortune: Int): ArrayList<ItemStack> {
-        val itemlist = ArrayList<ItemStack>()
+        val itemlist = Lists.newArrayList<ItemStack>()
         when(blockSet.drop_item) {
-            "null" -> itemlist.add(Sandman.sandman())
+            "null" -> return itemlist
             "this" -> itemlist.add(ItemStack(this))
             else -> itemlist.add(ItemStack(findItemByText(blockSet.drop_item)))
         }
