@@ -1,6 +1,8 @@
 package club.someoneice.ovo.core
 
 import club.someoneice.ovo.OVOMain
+import club.someoneice.ovo.core.`object`.DataList
+import club.someoneice.ovo.core.`object`.Info
 import club.someoneice.ovo.data.Group
 import club.someoneice.ovo.json.data.CoreDataOutput
 import club.someoneice.ovo.json.data.helper.RecipeJsonHelper
@@ -8,12 +10,7 @@ import club.someoneice.ovo.util.*
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder
 import net.minecraft.block.AbstractBlock
 import net.minecraft.block.Material
-import net.minecraft.item.FoodComponent
-import net.minecraft.item.Item
-import net.minecraft.item.ItemGroup
-import net.minecraft.item.ItemStack
-import net.minecraft.item.Items
-import net.minecraft.item.ToolMaterials
+import net.minecraft.item.*
 import net.minecraft.util.Identifier
 
 
@@ -23,10 +20,6 @@ class DataProcessor(private val mod_id: String?) {
         toolGroupProcessing()
         toolItemProcessing()
         toolBlockProcessing()
-        if (Info.dataMode) {
-            recipeDataProcessor()
-            // TODO - Lang...
-        }
     }
 
     private fun toolInfoProcessing() {
@@ -86,6 +79,7 @@ class DataProcessor(private val mod_id: String?) {
 
                 else -> ToolMaterials.WOOD
             }
+
             ItemWeapons(Item.Settings().group(DataList.getGroup[weapons.group]).maxCount(1), weapons, mate)
         }
     }
@@ -98,7 +92,7 @@ class DataProcessor(private val mod_id: String?) {
         }
     }
 
-    public fun recipeDataProcessor() {
+    private fun recipeDataProcessor() {
         for (recipe in DataList.dataRecipe) {
             CoreDataOutput(RecipeJsonHelper(), recipe)
         }

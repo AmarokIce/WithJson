@@ -8,7 +8,6 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import java.io.BufferedWriter
 import java.io.File
-import java.io.FileWriter
 import java.nio.file.Files
 import java.nio.file.Paths
 
@@ -19,8 +18,8 @@ class RecipeJsonHelper: JsonData() {
     val basePath = "${System.getProperty("user.dir")}\\ovo\\resources\\data\\$modid"
 
     override fun startIn(modid: String, dataSet: IDataGem) {
-        if (!File(basePath).exists()) File(basePath).mkdir()
-        if (!File("${basePath}\\recipes").exists()) File("${basePath}\\recipes").mkdir()
+        if (!File(basePath).exists()) File(basePath).mkdirs()
+        if (!File("${basePath}\\recipes").exists()) File("${basePath}\\recipes").mkdirs()
 
         if (dataSet is Recipes) {
             this.modid = modid

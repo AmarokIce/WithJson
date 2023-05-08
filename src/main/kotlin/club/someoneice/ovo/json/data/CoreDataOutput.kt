@@ -1,7 +1,7 @@
 package club.someoneice.ovo.json.data
 
 import club.someoneice.ovo.IDataGem
-import club.someoneice.ovo.core.Info
+import club.someoneice.ovo.core.`object`.Info
 
 class CoreDataOutput(data: JsonData, dataSet: IDataGem) {
     val modid = Info.modid

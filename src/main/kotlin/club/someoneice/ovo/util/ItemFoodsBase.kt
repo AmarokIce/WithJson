@@ -1,8 +1,7 @@
 package club.someoneice.ovo.util
 
-import club.someoneice.ovo.core.Info
-import club.someoneice.ovo.data.ItemFoods
-import club.someoneice.ovo.json.Sandman
+import club.someoneice.ovo.core.`object`.Info
+import club.someoneice.ovo.data.ItemFood
 import club.someoneice.ovo.json.data.CoreDataOutput
 import club.someoneice.ovo.json.data.helper.ItemJsonHelper
 import club.someoneice.ovo.util.Util.findItemByText
@@ -14,7 +13,7 @@ import net.minecraft.util.UseAction
 import net.minecraft.util.registry.Registry
 import net.minecraft.world.World
 
-class ItemFoodsBase(settings: Settings, private val foodSet: ItemFoods): Item(settings) {
+class ItemFoodsBase(settings: Settings, private val foodSet: ItemFood): Item(settings) {
     init {
         Registry.register(Registry.ITEM, Identifier(Info.modid, foodSet.name), this)
         CoreDataOutput(ItemJsonHelper(), foodSet)
@@ -25,6 +24,7 @@ class ItemFoodsBase(settings: Settings, private val foodSet: ItemFoods): Item(se
     }
 
     override fun finishUsing(stack: ItemStack?, world: World?, user: LivingEntity?): ItemStack {
-        return ItemStack(findItemByText(foodSet.return_item) ?: Sandman.sandman().item)
+        val item = findItemByText(foodSet.return_item) ?: return ItemStack.EMPTY
+        return item.defaultStack
     }
 }

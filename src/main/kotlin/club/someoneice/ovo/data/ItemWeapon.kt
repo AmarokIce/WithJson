@@ -2,11 +2,9 @@ package club.someoneice.ovo.data
 
 import club.someoneice.ovo.IDataGem
 
-
-data class ItemTool(
+data class ItemWeapon(
     val name: String,
-    val attackDamage: Int,
-    val toolkit: String,
+    val attackDamage: Int       = 0,
     val tool_meta: String       = "wood",
     val group: String           = "null"
 ): IDataGem

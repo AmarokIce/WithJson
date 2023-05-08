@@ -3,12 +3,9 @@ package club.someoneice.ovo.json.data.helper
 import club.someoneice.ovo.IDataGem
 import club.someoneice.ovo.data.BlockData
 import club.someoneice.ovo.json.data.JsonData
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import java.io.BufferedWriter
 import java.io.File
-import java.io.FileWriter
-import java.io.Writer
 import java.nio.file.Files
 import java.nio.file.Paths
 
@@ -16,10 +13,10 @@ class BlockJsonHelper: JsonData() {
 
     override fun startIn(modid: String, dataSet: IDataGem) {
         val basePath = "${System.getProperty("user.dir")}\\ovo\\resources\\assets\\$modid"
-        if (!File(basePath).exists()) File(basePath).mkdir()
-        if (!File("${basePath}\\blockstates").exists()) File("${basePath}\\blockstates").mkdir()
-        if (!File("${basePath}\\models\\block").exists()) File("${basePath}\\models\\block").mkdir()
-        if (!File("${basePath}\\textures\\block").exists()) File("${basePath}\\textures\\block").mkdir()
+        if (!File(basePath).exists()) File(basePath).mkdirs()
+        if (!File("${basePath}\\blockstates").exists()) File("${basePath}\\blockstates").mkdirs()
+        if (!File("${basePath}\\models\\block").exists()) File("${basePath}\\models\\block").mkdirs()
+        if (!File("${basePath}\\textures\\block").exists()) File("${basePath}\\textures\\block").mkdirs()
 
         if (dataSet is BlockData) {
             File("${basePath}\\blockstates\\${dataSet.name}.json").createNewFile()

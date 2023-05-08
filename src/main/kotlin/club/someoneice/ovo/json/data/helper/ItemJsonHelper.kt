@@ -3,11 +3,9 @@ package club.someoneice.ovo.json.data.helper
 import club.someoneice.ovo.IDataGem
 import club.someoneice.ovo.data.*
 import club.someoneice.ovo.json.data.JsonData
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import java.io.BufferedWriter
 import java.io.File
-import java.io.FileWriter
 import java.nio.file.Files
 import java.nio.file.Paths
 
@@ -17,11 +15,11 @@ class ItemJsonHelper: JsonData() {
             dataProcessor(modid, dataSet.name)
         }
 
-        if (dataSet is ItemKnife) {
+        if (dataSet is ItemWeapon) {
             dataProcessor(modid, dataSet.name)
         }
 
-        if (dataSet is ItemFoods) {
+        if (dataSet is ItemFood) {
             dataProcessor(modid, dataSet.name)
         }
 
@@ -37,8 +35,8 @@ class ItemJsonHelper: JsonData() {
     private fun dataProcessor(modid: String, name: String) {
         val basePath = "${System.getProperty("user.dir")}\\ovo\\resources\\assets\\$modid"
 
-        if (!File(basePath).exists()) File(basePath).mkdir()
-        if (!File("${basePath}\\models\\item").exists()) File("${basePath}\\models\\item").mkdir()
+        if (!File(basePath).exists()) File(basePath).mkdirs()
+        if (!File("${basePath}\\models\\item").exists()) File("${basePath}\\models\\item").mkdirs()
         if (!File("${basePath}\\textures\\item").exists()) File("${basePath}\\textures\\item").mkdirs()
 
         File("${basePath}\\models\\item\\${name}.json").createNewFile()

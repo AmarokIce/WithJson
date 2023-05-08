@@ -1,4 +1,4 @@
-package club.someoneice.ovo.core
+package club.someoneice.ovo.core.`object`
 
 object Info {
     var modid: String = ""
