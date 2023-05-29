@@ -16,11 +16,9 @@ class ItemGifts(private val itemSet: ItemGift): Item() {
         this.unlocalizedName = itemSet.localization_name
         this.setTextureName(Info.modid + ":" + itemSet.texture_name)
         this.maxStackSize = itemSet.max_size
-        if (DataList.getGroup.containsKey(itemSet.group)) {
-            this.creativeTab = DataList.getGroup[itemSet.group]
-        } else {
-            OVOMain.Logger.error("${itemSet.name}'s group is in error !")
-        }
+
+        if   (DataList.getGroup.containsKey(itemSet.group)) this.creativeTab = DataList.getGroup[itemSet.group]
+        else OVOMain.Logger.error("${itemSet.name}'s group is in error !")
 
         this.register(itemSet.name)
     }

@@ -55,8 +55,6 @@ dependencies {
 
     implementation fileTree(dir: 'lib', includes: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
-    // compile "project.studio.manametalmod:manametalmod-6.3.8-1"
-    // compile "tw.pearki.mcmod.muya:muya_1.11.1"
 }
 
 tasks.withType(Jar) {

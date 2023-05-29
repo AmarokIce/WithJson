@@ -29,7 +29,7 @@
 >   * <a href="#texture"> Texture and assets </a>
 >   * <a href="#error">   Hey! It not work!  </a>
 >
-> ### **Other**
+> ### <a href="#other">    Other              </a>
 > * License
 > * Lib
 
@@ -451,6 +451,10 @@ Oh no! Too bad! But now you can take it easy, because I will remind you somethin
 > Send an Issues to report this will make WithJson do better! Thank you! :)
 >
 
-## **Other**
-### **License**
+## **Other** <a id="other"></a>
+### **License** <a id="license"></a>
 **[Pineapple License](LICENSE)**
+
+### **Sponsor**
+[![](https://raw.githubusercontent.com/AmarokIce/AmarokIce/main/img/BuyMeACoffee.png)](https://www.buymeacoffee.com/AmarokIce)
+

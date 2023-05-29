@@ -33,7 +33,6 @@ class MMMCoreRunner(baseFile: String) {
                 "Recipes"       -> handle(file, recipe,         MMMDataList.dataRecipes)
             }
         }
-
     }
 
     private fun <T> handle(file: File, json: JsonReaderBean<T>, list: ArrayList<T>) {

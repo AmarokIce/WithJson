@@ -451,6 +451,10 @@ dir: pineapple
 > 提交一份Issues會讓WithJson做的更好！感激不盡! :)
 >
 
-## **Other**
-### **License**
+## **其他**
+### **許可證**
 **[Pineapple License](LICENSE)**
+
+### 贊助
+[![](https://raw.githubusercontent.com/AmarokIce/AmarokIce/main/img/AiFaDian.png)](https://afdian.net/a/ut_ice)
+[![](https://raw.githubusercontent.com/AmarokIce/AmarokIce/main/img/BuyMeACoffee.png)](https://www.buymeacoffee.com/AmarokIce)
