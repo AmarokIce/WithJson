@@ -4,8 +4,17 @@ import club.someoneice.ovo.core.`object`.DataList
 import club.someoneice.ovo.data.*
 import club.someoneice.ovo.json.JsonReaderBean
 import club.someoneice.ovo.mana.MMMCoreRunner
+import club.someoneice.ovo.util.gson
+import club.someoneice.togocup.recipebook.JarUtil
+import club.someoneice.togocup.recipebook.JarUtil.UrlBuffered
+import com.google.common.collect.Lists
+import com.google.common.collect.Maps
+import com.google.common.collect.Sets
+import com.google.gson.reflect.TypeToken
+import cpw.mods.fml.common.Loader
 import java.io.File
 import java.io.FileNotFoundException
+import java.nio.file.Files
 
 class CoreRunner {
     private val basePath: String = "${System.getProperty("user.dir")}\\ovo"
@@ -13,16 +22,18 @@ class CoreRunner {
 
     // Although it may seem cumbersome, it is easier to discern than internal inference, and there will be no surprises.
     // Internal inference is good but this is too much type... It's easy to confuse.
-    private val group           = JsonReaderBean<Group>()
-    private val item            = JsonReaderBean<ItemData>()
-    private val food            = JsonReaderBean<ItemFood>()
-    private val gift            = JsonReaderBean<ItemGift>()
-    private val tool            = JsonReaderBean<ItemTool>()
-    private val swords          = JsonReaderBean<ItemWeapon>()
-    private val block           = JsonReaderBean<BlockData>()
-    private val recipes         = JsonReaderBean<Recipe>()
-    private val delete_recipes  = JsonReaderBean<String>()
-    private val biomes          = JsonReaderBean<BiomesData>()
+    companion object {
+        internal val group           = JsonReaderBean<Group>()
+        internal val item            = JsonReaderBean<ItemData>()
+        internal val food            = JsonReaderBean<ItemFood>()
+        internal val gift            = JsonReaderBean<ItemGift>()
+        internal val tool            = JsonReaderBean<ItemTool>()
+        internal val swords          = JsonReaderBean<ItemWeapon>()
+        internal val block           = JsonReaderBean<BlockData>()
+        internal val recipes         = JsonReaderBean<Recipe>()
+        internal val delete_recipes  = JsonReaderBean<String>()
+        internal val biomes          = JsonReaderBean<BiomesData>()
+    }
 
     init {
         try {
@@ -37,11 +48,26 @@ class CoreRunner {
     }
 
     private fun init() {
+        fun readWithOriginal(file: File): HashMap<String, String>? {
+            val type = object: TypeToken<HashMap<String, String>>() {}.type
+            val reader = Files.newInputStream(file.toPath())
+
+            return try {
+                val byte = ByteArray(file.length().toInt())
+                reader.read(byte)
+                reader.close()
+
+                gson.fromJson(String(byte), type) as HashMap<String, String>
+            } catch (_: Exception) {
+                null
+            }
+        }
+
         for (i in packagePathList) {
             if (File("${basePath}\\${i}").isDirectory || !File("${basePath}\\${i}\\info.json").isFile) {
                 OVOMain.Logger.info("Such pockage: ${basePath}\\${i}")
-                val modid: String? =
-                    (JsonReaderBean<HashMap<String, String>>().readWithOriginal(File("${basePath}\\${i}\\info.json")) as HashMap<String, String>)["modid"]
+
+                val modid: String? = readWithOriginal(File("${basePath}\\${i}\\info.json"))?.let { it["modid"] }
 
                 // Scanning the OVOPackage! And add all we want!
                 scanning("${basePath}\\${i}")
@@ -50,6 +76,13 @@ class CoreRunner {
                 if (OVOMain.ManaMetalModInstall) MMMCoreRunner("${basePath}\\${i}")
                 DataList.init()
             }
+        }
+
+        /**
+         * Read the file from Jar.
+         */
+        if (Loader.isModLoaded("pineapple_recipe_book")) {
+            JarRunner()
         }
     }
 

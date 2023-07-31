@@ -1,6 +1,8 @@
 package club.someoneice.ovo.util
 
 import club.someoneice.ovo.core.`object`.Info
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import cpw.mods.fml.common.registry.GameRegistry
 import net.minecraft.block.Block
 import net.minecraft.item.Item
@@ -45,3 +47,5 @@ fun ItemStack.setSize(size: Int): ItemStack {
 fun Item.ore(): ItemStackOre {
     return ItemStackOre(this)
 }
+
+val gson: Gson = GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create()
