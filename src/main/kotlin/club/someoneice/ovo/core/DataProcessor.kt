@@ -33,7 +33,7 @@ class DataProcessor(private val mod_id: String?) {
     }
 
     private fun infoProcessing() {
-        Info.modid = this.mod_id ?: OVOMain.modid
+        Info.modid = this.mod_id ?: OVOMain.MODID
 
         OVOMain.Logger.info("Get modid: $mod_id !")
     }

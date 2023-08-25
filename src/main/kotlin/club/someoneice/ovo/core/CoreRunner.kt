@@ -5,11 +5,6 @@ import club.someoneice.ovo.data.*
 import club.someoneice.ovo.json.JsonReaderBean
 import club.someoneice.ovo.mana.MMMCoreRunner
 import club.someoneice.ovo.util.gson
-import club.someoneice.togocup.recipebook.JarUtil
-import club.someoneice.togocup.recipebook.JarUtil.UrlBuffered
-import com.google.common.collect.Lists
-import com.google.common.collect.Maps
-import com.google.common.collect.Sets
 import com.google.gson.reflect.TypeToken
 import cpw.mods.fml.common.Loader
 import java.io.File
