@@ -9,7 +9,6 @@ import com.google.gson.reflect.TypeToken
 import cpw.mods.fml.common.Loader
 import java.io.File
 import java.io.FileNotFoundException
-import java.nio.file.Files
 
 class CoreRunner {
     private val basePath: String = "${System.getProperty("user.dir")}\\ovo"
@@ -45,17 +44,7 @@ class CoreRunner {
     private fun init() {
         fun readWithOriginal(file: File): HashMap<String, String>? {
             val type = object: TypeToken<HashMap<String, String>>() {}.type
-            val reader = Files.newInputStream(file.toPath())
-
-            return try {
-                val byte = ByteArray(file.length().toInt())
-                reader.read(byte)
-                reader.close()
-
-                gson.fromJson(String(byte), type) as HashMap<String, String>
-            } catch (_: Exception) {
-                null
-            }
+            return gson.fromJson(file.readText(), type) as HashMap<String, String>?
         }
 
         for (i in packagePathList) {

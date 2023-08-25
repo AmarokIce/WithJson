@@ -29,11 +29,11 @@ class JarRunner {
         val infoMappings: HashMap<String, JarUtil.UrlBuffered> = Maps.newHashMap()
         fun <E>ArrayList<E>.addElement(e: E): ArrayList<E> {
             this.add(e)
-            return this;
+            return this
         }
 
         for (buffered in JarUtil.getInstance().dataSet) {
-            val urlName = buffered.fileUrl;
+            val urlName = buffered.fileUrl
             if (!urlName.contains("ovo/")) continue
             val name = urlName.replace("ovo/", "").substring(0, urlName.replace("ovo/", "").indexOf("/"))
             mappings[name] = mappings.getOrDefault(name, Lists.newArrayList()).addElement(buffered)
@@ -48,31 +48,28 @@ class JarRunner {
                     (gson.fromJson(JarUtil.getInstance().readFileFromUrl(infoMappings[key]), type) as HashMap<String, String>).let { it["modid"] }
                 for (url in mappings[key]!!) {
                     if (url == infoMappings[key]) continue
-                    val fileName =
-                        url.fileUrl.substring(url.fileUrl.lastIndexOf("/") + 1, url.fileUrl.lastIndexOf("."))
-                    (
-                            if (set.contains(fileName.lowercase())) fileName
-                            else {
-                                val path = url.fileUrl.replace("ovo/${key}/", "")
-                                val filePath = path.substring(0, path.indexOf("/"))
-                                if (set.contains(filePath.lowercase())) filePath
-                                else null
-                            }
-                            )?.let {
-                            val txt = JarUtil.getInstance().readFileFromUrl(url) ?: return@let
-                            when (it.lowercase()) {
-                                "Item".lowercase()          -> CoreRunner.item.init            (txt, DataList.dataItem)
-                                "ItemFood".lowercase()      -> CoreRunner.food.init            (txt, DataList.dataItemFood)
-                                "ItemGift".lowercase()      -> CoreRunner.gift.init            (txt, DataList.dataItemGift)
-                                "ItemTool".lowercase()      -> CoreRunner.tool.init            (txt, DataList.dataItemTool)
-                                "ItemWeapons".lowercase()   -> CoreRunner.swords.init          (txt, DataList.dataItemWeapons)
-                                "Block".lowercase()         -> CoreRunner.block.init           (txt, DataList.dataBlock)
-                                "Recipe".lowercase()        -> CoreRunner.recipes.init         (txt, DataList.dataRecipes)
-                                "DeleteRecipe".lowercase()  -> CoreRunner.delete_recipes.init  (txt, DataList.dataDeleteRecipes)
-                                "Biomes".lowercase()        -> CoreRunner.biomes.init          (txt, DataList.dataBiomes)
-                                "Group".lowercase()         -> CoreRunner.group.init           (txt, DataList.dataGroup)
-                            }
+                    val fileName = url.fileUrl.substring(url.fileUrl.lastIndexOf("/") + 1, url.fileUrl.lastIndexOf("."))
+                    if (set.contains(fileName.lowercase())) fileName
+                    else {
+                        val path = url.fileUrl.replace("ovo/${key}/", "")
+                        val filePath = path.substring(0, path.indexOf("/"))
+                        if (set.contains(filePath.lowercase())) filePath
+                        else null
+                    }?.let {
+                        val txt = JarUtil.getInstance().readFileFromUrl(url) ?: return@let
+                        when (it.lowercase()) {
+                            "Item".lowercase()          -> CoreRunner.item.init            (txt, DataList.dataItem)
+                            "ItemFood".lowercase()      -> CoreRunner.food.init            (txt, DataList.dataItemFood)
+                            "ItemGift".lowercase()      -> CoreRunner.gift.init            (txt, DataList.dataItemGift)
+                            "ItemTool".lowercase()      -> CoreRunner.tool.init            (txt, DataList.dataItemTool)
+                            "ItemWeapons".lowercase()   -> CoreRunner.swords.init          (txt, DataList.dataItemWeapons)
+                            "Block".lowercase()         -> CoreRunner.block.init           (txt, DataList.dataBlock)
+                            "Recipe".lowercase()        -> CoreRunner.recipes.init         (txt, DataList.dataRecipes)
+                            "DeleteRecipe".lowercase()  -> CoreRunner.delete_recipes.init  (txt, DataList.dataDeleteRecipes)
+                            "Biomes".lowercase()        -> CoreRunner.biomes.init          (txt, DataList.dataBiomes)
+                            "Group".lowercase()         -> CoreRunner.group.init           (txt, DataList.dataGroup)
                         }
+                    }
                 }
 
                 DataProcessor(modid).init()

@@ -7,21 +7,21 @@ import net.minecraft.creativetab.CreativeTabs
 
 object DataList {
     // Retain this map for other package to use.
-    var getGroup          :HashMap<String, CreativeTabs> = Maps.newHashMap()
+    val getGroup          :HashMap<String, CreativeTabs> = Maps.newHashMap()
 
-    var dataItem          :ArrayList<ItemData>           = Lists.newArrayList()
-    var dataItemGift      :ArrayList<ItemGift>           = Lists.newArrayList()
-    var dataItemFood      :ArrayList<ItemFood>           = Lists.newArrayList()
-    var dataItemTool      :ArrayList<ItemTool>           = Lists.newArrayList()
-    var dataItemWeapons   :ArrayList<ItemWeapon>         = Lists.newArrayList()
-    var dataBlock         :ArrayList<BlockData>          = Lists.newArrayList()
+    val dataItem          :ArrayList<ItemData>           = Lists.newArrayList()
+    val dataItemGift      :ArrayList<ItemGift>           = Lists.newArrayList()
+    val dataItemFood      :ArrayList<ItemFood>           = Lists.newArrayList()
+    val dataItemTool      :ArrayList<ItemTool>           = Lists.newArrayList()
+    val dataItemWeapons   :ArrayList<ItemWeapon>         = Lists.newArrayList()
+    val dataBlock         :ArrayList<BlockData>          = Lists.newArrayList()
 
-    var dataBiomes        :ArrayList<BiomesData>         = Lists.newArrayList()
-    var dataGroup         :ArrayList<Group>              = Lists.newArrayList()
-    var dataRecipes       :ArrayList<Recipe>             = Lists.newArrayList()
-    var dataDeleteRecipes :ArrayList<String>             = Lists.newArrayList()
+    val dataBiomes        :ArrayList<BiomesData>         = Lists.newArrayList()
+    val dataGroup         :ArrayList<Group>              = Lists.newArrayList()
+    val dataRecipes       :ArrayList<Recipe>             = Lists.newArrayList()
+    val dataDeleteRecipes :ArrayList<String>             = Lists.newArrayList()
 
-    // Clean all of the data list.
+    // Clean all the data list.
     fun init() {
         dataItem.clear()
         dataBlock.clear()

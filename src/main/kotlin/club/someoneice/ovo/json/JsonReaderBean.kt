@@ -12,7 +12,7 @@ class JsonReaderBean<T> {
      * @return Input the originalList, the object for return will put into the originalList.
      * */
     fun init(file: File, originalList: ArrayList<T>) {
-        this.init(file.reader().readText(), originalList)
+        this.init(file.readText(), originalList)
     }
 
     fun init(file: String, originalList: ArrayList<T>) {
