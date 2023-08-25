@@ -26,6 +26,7 @@ buildscript {
 apply plugin: 'forge'
 apply plugin: 'kotlin'
 apply plugin: 'org.jetbrains.kotlin.jvm'
+apply plugin: 'maven-publish'
 
 version = "0.1.0"
 group = "club.someoneice.ovo"
@@ -37,13 +38,15 @@ minecraft {
 }
 
 repositories {
-    /*
-    maven {
-        name = "jitpack"
-        url = "https://jitpack.io/"
-    }
-    */
     mavenCentral()
+    maven {
+        name = "GitHubPackages"
+        url = uri("https://maven.pkg.github.com/amarokice/withpineapplepsychic")
+        credentials {
+            username = "AmarokIce"
+            password = ProcessEnvironment.getenv("GITHUB_TOKEN")
+        }
+    }
 
     flatDir{
         dirs 'lib'
@@ -51,10 +54,10 @@ repositories {
 }
 
 dependencies {
-    // compile 'com.github.handicraftsman:legacymckotlin:master-SNAPSHOT'
-
-    implementation fileTree(dir: 'lib', includes: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+
+    // implementation 'club.someoneice.pineapplepsychic:pineapple-psychic:1.2.1'
+    implementation fileTree(dir: 'lib', includes: ['*.jar'])
 }
 
 tasks.withType(Jar) {

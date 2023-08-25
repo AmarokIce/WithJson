@@ -12,6 +12,7 @@ class OVOMain {
         const val modid: String = "ovo"
         const val VERSION: String = "0.1.2"
         val ManaMetalModInstall: Boolean = Loader.isModLoaded("manametalmod")
+        val PineapplePsychicInstall: Boolean = Loader.isModLoaded("pineapple_psychic")
 
         var Logger = LogManager.getLogger("WithJson")
     }
