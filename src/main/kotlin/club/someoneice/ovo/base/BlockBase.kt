@@ -14,8 +14,9 @@ import net.minecraft.world.World
 class BlockBase(material: Material, private val blockSet: BlockData): Block(material) {
     init {
         this.setHardness(blockSet.hard.toFloat())
-        this.setHarvestLevel(blockSet.break_tool, blockSet.hard_level)
-
+        blockSet.break_tool?.let {
+            this.setHarvestLevel(it, blockSet.hard_level)
+        }
         if (blockSet.is_glow) this.setLightLevel(15.0F)
 
         if (DataList.getGroup.containsKey(blockSet.group)) {
@@ -28,13 +29,13 @@ class BlockBase(material: Material, private val blockSet: BlockData): Block(mate
     }
 
     override fun getDrops(world: World?, x: Int, y: Int, z: Int, metadata: Int, fortune: Int): ArrayList<ItemStack> {
-        val itemlist = Lists.newArrayList<ItemStack>()
-        when(blockSet.drop_item) {
-            "null" -> return itemlist
-            "this" -> itemlist.add(ItemStack(this))
-            else -> itemlist.add(ItemStack(findItemByText(blockSet.drop_item)))
-        }
+        return Lists.newArrayList<ItemStack>().also {
+            when(blockSet.drop_item) {
+                "null" -> Unit
+                "this" -> it.add(ItemStack(this))
+                else -> it.add(ItemStack(findItemByText(blockSet.drop_item)))
 
-        return itemlist
+            }
+        }
     }
 }

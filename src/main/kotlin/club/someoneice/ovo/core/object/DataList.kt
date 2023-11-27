@@ -21,7 +21,6 @@ object DataList {
     val dataRecipes       :ArrayList<Recipe>             = Lists.newArrayList()
     val dataDeleteRecipes :ArrayList<String>             = Lists.newArrayList()
 
-    // Clean all the data list.
     fun init() {
         dataItem.clear()
         dataBlock.clear()

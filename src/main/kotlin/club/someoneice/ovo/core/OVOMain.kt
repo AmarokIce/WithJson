@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger
 class OVOMain {
     companion object {
         const val MODID: String = "ovo"
-        const val VERSION: String = "0.1.2"
+        const val VERSION: String = "0.1.3"
         val ManaMetalModInstall: Boolean = Loader.isModLoaded("manametalmod")
         val PineapplePsychicInstall: Boolean = Loader.isModLoaded("pineapple_psychic")
 
