@@ -11,7 +11,7 @@ import project.studio.manametalmod.core.ItemStackOre
 
 object Util {
     fun findItemByText(itemName: String): Item? {
-        return Item.itemRegistry.getObject(itemName) as Item? ?: Item.getItemFromBlock(Block.getBlockFromName(itemName))
+        return Item.itemRegistry.getObject(itemName) as Item? ?: findBlockByText(itemName)
     }
 
     fun findBlockByText(blockName: String): Item? {

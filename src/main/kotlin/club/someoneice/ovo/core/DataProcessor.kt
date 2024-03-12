@@ -43,7 +43,7 @@ class DataProcessor(private val mod_id: String?) {
 
         for (group in DataList.dataGroup) {
             try {
-                DataList.getGroup[group.name] = tabCreateGroup(group)
+                DataList.getGroup["${Info.modid}:${group.name}"] = tabCreateGroup(group)
                 OVOMain.Logger.info("Create group: ${group.name} !")
             } catch (_: Exception) {
                 OVOMain.Logger.error("Cannot create the new group!")
@@ -70,22 +70,10 @@ class DataProcessor(private val mod_id: String?) {
     private fun itemDataProcessing() {
         OVOMain.Logger.info("Now create new items!")
 
-        for (item in DataList.dataItem) {
-            ItemBase(item)
-        }
-
-        for (item in DataList.dataItemFood) {
-            ItemFoodsBase(item.hunger, item.saturation, item.wolf, item)
-        }
-
-        for (item in DataList.dataItemGift) {
-            ItemGifts(item)
-        }
-
-        for (tool in DataList.dataItemTool) {
-            ItemTools(tool)
-        }
-
+        for (item in DataList.dataItem)     ItemBase(item)
+        for (item in DataList.dataItemFood) ItemFoodsBase(item.hunger, item.saturation, item.wolf, item)
+        for (item in DataList.dataItemGift) ItemGifts(item)
+        for (tool in DataList.dataItemTool) ItemTools(tool)
         for (weapons in DataList.dataItemWeapons) {
             val mate = when (weapons.tool_meta) {
                 "wood"      -> Item.ToolMaterial.WOOD
@@ -128,8 +116,8 @@ class DataProcessor(private val mod_id: String?) {
             val output: Item = if (recipe.result.containsKey("item")) findItemByText(recipe.result["item"]!!) ?: return else continue
             for (item in recipe.ingredients!!) {
                 itemList.add (
-                    if (item.containsKey("item"))           (findItemByText(item["item"]!!)  ?: continue)
-                    else if (item.containsKey("block"))     (findItemByText(item["block"]!!) ?: continue)
+                    if (item.containsKey("item"))           ItemStack(findItemByText(item["item"]!!) ?: continue, 1, item["meta"]?.toInt() ?: 0)
+                    else if (item.containsKey("block"))     ItemStack(findItemByText(item["block"]!!) ?: continue, 1, item["meta"]?.toInt() ?: 0)
                     else if (item.containsKey("oredict"))   (item["oredict"]!!)
                     else continue
                 )

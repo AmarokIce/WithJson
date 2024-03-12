@@ -5,5 +5,7 @@ data class ItemData(
     val localization_name: String   = name,
     val texture_name: String        = name,
     val max_size: Int               = 64,
-    val group: String               = "null"
+    val group: String               = "null",
+    val meta: Int                   = 0,
+    val info: List<String>          = ArrayList()
 )

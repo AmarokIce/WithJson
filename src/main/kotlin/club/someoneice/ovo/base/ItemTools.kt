@@ -21,12 +21,12 @@ class ItemTools(toolSet: ItemTool) {
         }
 
         when (toolSet.toolkit) {
-            "axe" -> ItemAxes(mate, toolSet)
-            "pickaxe" -> ItemPickaxe(mate, toolSet)
-            "hoe" -> ItemHoes(mate, toolSet)
-            "shovel" -> ItemShovels(mate, toolSet)
+            "axe" ->        ItemAxes(mate, toolSet)
+            "pickaxe" ->    ItemPickaxe(mate, toolSet)
+            "hoe" ->        ItemHoes(mate, toolSet)
+            "shovel" ->     ItemShovels(mate, toolSet)
 
-            else -> Sandman.nullSandman()
+            else ->         Sandman.nullSandman()
         }
     }
 }
