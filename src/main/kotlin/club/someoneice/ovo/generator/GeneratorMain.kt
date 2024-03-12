@@ -1,12 +1,8 @@
 package club.someoneice.ovo.generator
 
-import club.someoneice.ovo.core.OVOMain
 import club.someoneice.ovo.json.JsonReaderBean
-import club.someoneice.ovo.util.Util
 import club.someoneice.ovo.util.gson
 import java.io.File
-import java.io.FileNotFoundException
-
 object GeneratorMain {
     lateinit var baseDir: File
     @JvmStatic
