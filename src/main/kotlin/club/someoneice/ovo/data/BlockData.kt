@@ -1,13 +1,16 @@
 package club.someoneice.ovo.data
 
-data class BlockData(
-    val name: String,
-    val localization_name: String   = name,
-    val texture_name: String        = name,
-    val hard: Int                   = 1,
-    val hard_level: Int             = 0,
-    val break_tool: String?,
-    val is_glow: Boolean            = false,
-    val drop_item: String           = name,
-    val group: String               = "null"
-    )
+import club.someoneice.ovo.data.helper.Ingredient
+import com.google.common.collect.Lists
+
+data class BlockData (
+    val name:               String,
+    val localizationName:   String              = name,
+    val textureName:        List<String>        = Lists.newArrayList(name),
+    val hard:               Float               = 0.25f,
+    val breakTool:          String              = "pickaxe",
+    val sound:              String              = "minecraft:stone",
+    val glowLevel:          Float               = 0.0f,
+    val dropItem:           List<Ingredient>    = ArrayList(),
+    val group:              String              = ""
+)

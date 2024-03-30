@@ -1,6 +1,6 @@
-package club.someoneice.ovo.data
+package club.someoneice.ovo.data.old
 
-data class Group (
+data class Group(
     val name: String,
     val icon: String = "minecraft:apple"
 )
