@@ -457,4 +457,3 @@ Oh no! Too bad! But now you can take it easy, because I will remind you somethin
 
 ### **Sponsor**
 [![](https://raw.githubusercontent.com/AmarokIce/AmarokIce/main/img/BuyMeACoffee.png)](https://www.buymeacoffee.com/AmarokIce)
-

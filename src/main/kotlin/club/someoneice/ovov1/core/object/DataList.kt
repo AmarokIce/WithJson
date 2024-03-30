@@ -1,6 +1,6 @@
 package club.someoneice.ovov1.core.`object`
 
-import club.someoneice.ovo.data.old.*
+import club.someoneice.ovo.generator.old.*
 import com.google.common.collect.Lists
 import com.google.common.collect.Maps
 import net.minecraft.creativetab.CreativeTabs

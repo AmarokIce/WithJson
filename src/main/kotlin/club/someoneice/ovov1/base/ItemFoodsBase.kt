@@ -10,7 +10,7 @@ import net.minecraft.item.ItemFood
 import net.minecraft.item.ItemStack
 import net.minecraft.world.World
 
-class ItemFoodsBase(hunger: Int, saturation: Float, wolf: Boolean, private val foodSet: club.someoneice.ovo.data.old.ItemFood): ItemFood(hunger, saturation, wolf) {
+class ItemFoodsBase(hunger: Int, saturation: Float, wolf: Boolean, private val foodSet: club.someoneice.ovo.generator.old.ItemFood): ItemFood(hunger, saturation, wolf) {
     init {
         if (foodSet.always_eat) this.setAlwaysEdible()
         this.unlocalizedName = foodSet.localization_name

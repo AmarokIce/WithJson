@@ -1,4 +1,4 @@
-package club.someoneice.ovo.data.old
+package club.someoneice.ovo.generator.old
 
 import club.someoneice.ovo.data.helper.ItemGiftHelper
 

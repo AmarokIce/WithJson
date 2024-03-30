@@ -1,4 +1,4 @@
-package club.someoneice.ovov1.core.`object`
+package club.someoneice.ovo.util
 
 import net.minecraft.item.ItemStack
 import net.minecraft.item.crafting.CraftingManager
@@ -6,7 +6,12 @@ import net.minecraft.item.crafting.FurnaceRecipes
 import net.minecraft.item.crafting.IRecipe
 
 object RemoveRecipes {
-    fun removeItemRecipes(item: ItemStack?) {
+    fun removeAllRecipe(item: ItemStack) {
+        this.removeItemRecipes(item)
+        this.removeFurnaceRecipes(item)
+    }
+
+    fun removeItemRecipes(item: ItemStack) {
         val recipes: ArrayList<IRecipe?> = CraftingManager.getInstance().recipeList as ArrayList<IRecipe?>
         var i = 0
         while (i < recipes.size) {

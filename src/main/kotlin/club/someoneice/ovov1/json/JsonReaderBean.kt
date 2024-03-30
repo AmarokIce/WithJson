@@ -1,7 +1,7 @@
 package club.someoneice.ovov1.json
 
+import club.someoneice.ovo.core.Json5ReaderBean
 import club.someoneice.ovo.core.OVOMain
-import club.someoneice.ovov1.util.gson
 import com.google.gson.reflect.TypeToken
 import java.io.File
 

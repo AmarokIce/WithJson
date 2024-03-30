@@ -1,6 +1,6 @@
 package club.someoneice.ovov1.base
 
-import club.someoneice.ovo.data.old.BiomesData
+import club.someoneice.ovo.generator.old.BiomesData
 import cpw.mods.fml.relauncher.Side
 import cpw.mods.fml.relauncher.SideOnly
 import net.minecraft.world.biome.BiomeGenBase

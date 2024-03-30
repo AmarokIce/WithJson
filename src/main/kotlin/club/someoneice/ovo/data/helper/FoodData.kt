@@ -5,7 +5,7 @@ data class FoodData (
     val saturation:        Float,
     val wolf:              Boolean              = false,
     val alwaysEat:         Boolean              = false,
-    val fastFood:          Boolean              = false,
+    val speed:             Int                  = 32,
     val isDrink:           Boolean              = false,
     val returnItem:        List<Ingredient>     = ArrayList(),
 )

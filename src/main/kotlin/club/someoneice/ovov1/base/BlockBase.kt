@@ -1,7 +1,7 @@
 package club.someoneice.ovov1.base
 
 import club.someoneice.ovo.core.OVOMain
-import club.someoneice.ovo.data.old.BlockData
+import club.someoneice.ovo.generator.old.BlockData
 import club.someoneice.ovov1.core.`object`.DataList
 import club.someoneice.ovov1.util.Util.findItemByText
 import club.someoneice.ovov1.util.register

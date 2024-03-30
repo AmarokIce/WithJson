@@ -1,7 +1,7 @@
 package club.someoneice.ovov1.core
 
 import club.someoneice.ovo.core.OVOMain
-import club.someoneice.ovo.data.old.*
+import club.someoneice.ovo.generator.old.*
 import club.someoneice.ovov1.core.`object`.DataList
 import club.someoneice.ovov1.json.JsonReaderBean
 import club.someoneice.ovov1.mana.MMMCoreRunner
@@ -81,7 +81,7 @@ class CoreRunner {
                 "Block".lowercase()         -> handle(file, block,          DataList.dataBlock)
                 "Recipe".lowercase()        -> handle(file, recipe,         DataList.dataRecipes)
                 "DeleteRecipe".lowercase()  -> handle(file, delete_recipes, DataList.dataDeleteRecipes)
-                "Biome".lowercase()        -> handle(file, biomes,         DataList.dataBiomes)
+                "Biome".lowercase()         -> handle(file, biomes,         DataList.dataBiomes)
                 "Group".lowercase()         -> {
                     if (file.isDirectory) continue
                     group.init(file, DataList.dataGroup)

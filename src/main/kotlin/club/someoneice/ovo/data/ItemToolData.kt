@@ -6,5 +6,5 @@ data class ItemToolData(
     val textureName:        String      = name,
     val toolkit:            String      = "pickaxe",
     val toolMeta:           String      = "wood",
-    val group:              String      = ""
+    val group:              String      = "minecraft:misc"
 )

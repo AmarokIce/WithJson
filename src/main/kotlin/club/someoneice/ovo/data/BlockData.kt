@@ -12,5 +12,10 @@ data class BlockData (
     val sound:              String              = "minecraft:stone",
     val glowLevel:          Float               = 0.0f,
     val dropItem:           List<Ingredient>    = ArrayList(),
-    val group:              String              = ""
-)
+    val group:              String              = "",
+
+    // 0: Simple, 1: all sides, 2: complex
+    val rotationType:       Int                 = 0
+) {
+
+}
