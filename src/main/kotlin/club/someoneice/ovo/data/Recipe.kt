@@ -1,9 +1,11 @@
 package club.someoneice.ovo.data
 
+import club.someoneice.ovo.data.helper.Ingredient
+
 data class Recipe(
-    val type: String,
-    val pattern: ArrayList<String>?,
-    val key: HashMap<String, HashMap<String, String>>?,
-    val ingredients: ArrayList<HashMap<String, String>>?,
-    val result: HashMap<String, String>
+    val type:               String,
+    val pattern:            ArrayList<String>?,
+    val key:                HashMap<String, Ingredient>?,
+    val ingredients:        ArrayList<Ingredient>?,
+    val result:             Ingredient
 )

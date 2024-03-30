@@ -1,5 +1,6 @@
 buildscript {
     ext.kotlinVersion = '1.7.0'
+    ext.ppcVersion = '1.7.1'
 
     repositories {
         mavenCentral()
@@ -45,6 +46,16 @@ repositories {
         allowInsecureProtocol = true
     }
 
+    maven {
+        name "Curse Maven"
+        url "https://cursemaven.com"
+    }
+
+    maven {
+        name "Modrinth Maven"
+        url "https://api.modrinth.com/maven"
+    }
+
     flatDir{
         dirs 'lib'
     }
@@ -52,11 +63,13 @@ repositories {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
+    implementation "curse.maven:AJSCore-445557:5155186"
 
-    implementation "club.someoneice.pineapplepsychic:pineapple-psychic:1.5"
+    implementation "club.someoneice.pineapplepsychic:pineapple-psychic:$ppcVersion"
     implementation "club.someoneice.togocup.recipebook:PineappleRecipeBook:1.0"
 
-    implementation fileTree(dir: 'lib', includes: ['*.jar'])
+    implementation "curse.maven:Muya-530214:4364097"
+    implementation "curse.maven:ManaMetalMod-531708:4957568"
 }
 
 tasks.withType(Jar) {

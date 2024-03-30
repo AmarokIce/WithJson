@@ -1,14 +1,14 @@
 package club.someoneice.ovo.data
 
-data class BiomesData(
-    val id: Int,
-    val name: String,
-    val weight: Int,
-    val weather_type: String,
-    val biomes_tag: String,
-    val flower: Boolean,
-    val color: Int,
-    val grass_color: Int,
-    val rain: Boolean,
-    val water_color: Int
+data class BiomesData (
+    val id:             Int,
+    val name:           String,
+    val weight:         Int,
+    val weatherType:    String,
+    val biomesCag:      String,
+    val flower:         Boolean         = false,
+    val color:          Int,
+    val grassColor:     Int,
+    val rain:           Boolean         = true,
+    val waterColor:     Int
 )

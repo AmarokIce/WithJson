@@ -1,11 +1,15 @@
 package club.someoneice.ovo.data
 
-data class ItemData(
-    val name: String,
-    val localization_name: String   = name,
-    val texture_name: String        = name,
-    val max_size: Int               = 64,
-    val group: String               = "null",
-    val meta: Int                   = 0,
-    val info: List<String>          = ArrayList()
+import club.someoneice.ovo.data.helper.FoodData
+
+data class ItemData (
+    val name:               String,
+    val localizationName:   String          = name,
+    val textureName:        String          = name,
+    val maxSize:            Int             = 64,
+    val group:              String          = "null",
+    val meta:               Int             = 0,
+    val info:               List<String>    = ArrayList(),
+
+    val foodData:           FoodData?       = null
 )

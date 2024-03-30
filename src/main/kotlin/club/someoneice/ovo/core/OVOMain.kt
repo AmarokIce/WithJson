@@ -1,6 +1,7 @@
 package club.someoneice.ovo.core
 
 import alexsocol.patcher.KotlinAdapter
+import club.someoneice.ovov1.core.CoreRunner
 import cpw.mods.fml.common.Loader
 import cpw.mods.fml.common.Mod
 import cpw.mods.fml.common.event.FMLInitializationEvent
