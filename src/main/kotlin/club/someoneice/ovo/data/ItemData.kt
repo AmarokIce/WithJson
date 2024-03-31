@@ -5,7 +5,6 @@ import club.someoneice.ovo.core.CoreHandler
 import club.someoneice.ovo.data.helper.FoodData
 import club.someoneice.ovo.util.giveOrThrowOut
 import club.someoneice.ovo.util.register
-import club.someoneice.ovov1.core.`object`.Info
 import net.minecraft.client.renderer.texture.IIconRegister
 import net.minecraft.client.resources.I18n
 import net.minecraft.creativetab.CreativeTabs
@@ -30,7 +29,7 @@ data class ItemData (
 ) {
     private val icons by lazy<Array<IIcon?>> { arrayOfNulls(this.meta + 1) }
 
-    fun registryItem(): Item {
+    fun registryItem(modid: String): Item {
         val flag = this.meta > 0
         val item = foodData?.let { object: ItemFood(it.hunger, it.saturation, it.wolf) {
             init {
@@ -51,7 +50,7 @@ data class ItemData (
 
             override fun registerIcons(register: IIconRegister) {
                 if (!flag) super.registerIcons(register)
-                else dataRegisterIcons(register)
+                else dataRegisterIcons(modid, register)
             }
 
             override fun getSubItems(item: Item, tabs: CreativeTabs, list: MutableList<Any?>) {
@@ -78,7 +77,7 @@ data class ItemData (
 
             override fun registerIcons(register: IIconRegister) {
                 if (!flag) super.registerIcons(register)
-                else dataRegisterIcons(register)
+                else dataRegisterIcons(modid, register)
             }
 
             override fun getSubItems(item: Item, tabs: CreativeTabs, list: MutableList<Any?>) {
@@ -103,8 +102,8 @@ data class ItemData (
         return item
     }
 
-    private fun dataRegisterIcons(register: IIconRegister) {
-        for (i in 0 until this.meta) icons[i] = register.registerIcon("${Info.modid}:${textureName}_${i}")
+    private fun dataRegisterIcons(modid: String, register: IIconRegister) {
+        for (i in 0 until this.meta) icons[i] = register.registerIcon("${modid}:${textureName}_${i}")
     }
 
     private fun dataGetSubItems(item: Item, list: MutableList<Any?>) {

@@ -1,7 +1,6 @@
 package club.someoneice.ovo.data
 
 import club.someoneice.ovo.core.CoreHandler
-import club.someoneice.ovov1.core.`object`.Info
 import net.minecraft.item.*
 
 data class ItemToolData(
@@ -12,28 +11,20 @@ data class ItemToolData(
     val toolMaterial:       String      = "wood",
     val group:              String      = "minecraft:misc"
 ) {
-    private fun registerTool(): Item {
-        fun getMeta(name: String) = when (name.lowercase()) {
-            "wood"      -> Item.ToolMaterial.WOOD
-            "stone"     -> Item.ToolMaterial.STONE
-            "iron"      -> Item.ToolMaterial.WOOD
-            "gold"      -> Item.ToolMaterial.GOLD
-            "diamond"   -> Item.ToolMaterial.EMERALD
-            else        -> Item.ToolMaterial.WOOD
-        }
-
+    fun registerTool(modid: String): Item {
         fun setData(item: Item) {
             item.unlocalizedName = this.localizationName
-            item.setTextureName("${Info.modid}:${this.textureName}")
+            item.setTextureName("${modid}:${this.textureName}")
             item.setMaxStackSize(1)
         }
 
-        val material = getMeta(this.toolMaterial)
+        val material = Item.ToolMaterial.valueOf(this@ItemToolData.toolMaterial)
         val item = when (this.toolkit.lowercase()) {
             "axe"       -> object: ItemAxe(material) {}.apply(::setData)
             "hoe"       -> object: ItemHoe(material) {}.apply(::setData)
             "shovel"    -> object: ItemSpade(material) {}.apply(::setData)
             "pickaxe"   -> object: ItemPickaxe(material) {}.apply(::setData)
+            "sword"     -> object: ItemSword(material) {}.apply(::setData)
             else        -> object: ItemPickaxe(material) {}.apply(::setData)
         }
 
