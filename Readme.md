@@ -62,13 +62,13 @@ dir: .minecraft
 >> ovo_package.json
 ```
 Good! Now open file `ovo_package.json`, this is a Json to manage every OVOPackage you have, and put your OVOPackage in it, now my `ovo_package.json` look like this:
-```Json
+```Json5
 [
     "pineapple_test_package"
 ]
 ```
 And if we have much package? Add them in this list!
-```Json
+```Json5
 [
     "pineapple_test_package",
     "other_package"
@@ -79,7 +79,7 @@ And if we have much package? Add them in this list!
 ### **Create a modid** <a id="modid"></a><br />
 Got it! And you know now, "A mod need a modid" right? Go to the folder you just created and create a file named `info.json`， this file is your modid's manager. <br />
 Now let's make a modid in any you like and put it in this file. And you can only use the char in ASCALL.
-```Json
+```Json5
 {
     "modid": "pineapple"
 }
@@ -94,7 +94,7 @@ Lets we create a `Creative Tab` for our Items!<br />
 Why we cannot use the tab in vanilla? Coming soon! Because I spent some time thinking about how to get him working without any unexpected circumstances. ~~So will there be so many unexpected circumstances？~~ <br />
 
 Create a File named `Group.json`. Create a new tab now!
-```Json
+```Json5
 [
   {
     "name": "pineappleGroup",   // A name for your group, the lang key is "itemGroup.%YourGroupName"
@@ -112,7 +112,7 @@ Create a **File or Folder** named `Item.json` (If folder, named `Item`).<br />
 If it a folder, all the file in folder will sign up! And if a file, you can only make all the item in this file's list. Here example：
 
 **File:**
-```Json
+```Json5
 file: Item.json
 
 [
@@ -130,10 +130,10 @@ file: Item.json
 ```
 
 **Folder:**
-```Json
-dir: Item
+```Json5
+// dir: Item
 
-file: itemtest.json
+// file: itemtest.json
 
 [
   {
@@ -144,14 +144,16 @@ file: itemtest.json
     "group": "pineappleGroup"         // A creative tab for item.
   },
   {                                   // More cool item!
-    ...
+    // ...
   }
 ]
 
-file: itemtest2.json
+// file: itemtest2.json
+
 [
   {
-    ...
+    // Something Same
+    // ...
   }
 ]
 ```
@@ -168,7 +170,7 @@ file: itemtest2.json
 Like item, a file or a folder.Named `Block.json` ( If folder, `Block` .)<br />
 And let's go:
 
-```Json
+```Json5
 [
   {
     "name": "pineapple_block",
@@ -186,7 +188,7 @@ And let's go:
 
 ### **Food**<a id="food"></a>
 The food named `ItemFood.json`( If folder, `ItemFood`) <br />
-```Json
+```Json5
 [
   {
     "name": "pineapple",
@@ -208,7 +210,7 @@ The food named `ItemFood.json`( If folder, `ItemFood`) <br />
 ### **Gift**<a id="gift"></a>
 Merry Christmas! Gift is a box, and it will give player something when player right-click.Named `ItemGift.json` ( If folder, `ItemGift`) <br />
 It a testing element, so it will change in future （maybe？）
-```Json
+```Json5
 [
     {
         "name": "pineapple_package",
@@ -226,7 +228,7 @@ It a testing element, so it will change in future （maybe？）
 
 ### **Tool**<a id="tool"></a>
 What's better than a tool? Two tools! Named `ItemTool.json` (If folder, `ItemTool`)
-```Json
+```Json5
 [
   {
     "name": "pineapple_pickaxe",
@@ -241,7 +243,7 @@ What's better than a tool? Two tools! Named `ItemTool.json` (If folder, `ItemToo
 
 ### **Weapon**<a id="weapon"></a>
 ~~I can't think of how to make it look cool.~~ Named `ItemWeapons.json` (If folder, `ItemWeapons`)
-```Json
+```Json5
 [
     {
         "name": "pineapple_sword",
@@ -258,7 +260,7 @@ Named `Recipe.json` (If folder, `Recipe`)<br />
 If here any wrongs in Recipe, maybe it will make a crash.
 **Old** <br />
 Before WithJson 0.1.0, all the recipe should use old element. And it cannot use OreDict.
-```Json
+```Json5
 // Recipe.json
 [
   {
@@ -299,7 +301,7 @@ Before WithJson 0.1.0, all the recipe should use old element. And it cannot use 
 
 **New** <br />
 0.1.0, now recipes Jsons will more like the datapackage.
-```Json
+```Json5
 [
   {
     "type": "minecraft:crafting_shaped", // Shaped Recipe
@@ -362,7 +364,7 @@ Before WithJson 0.1.0, all the recipe should use old element. And it cannot use 
 
 **Delete Recipe** <br />
 Delete a recipe from game, vanilla or other mods. Named `DeleteRecipe.json` (If folder, `DeleteRecipe` .) 
-```Json
+```Json5
 [
   "minecraft:bread",
   "minecraft:cake",
@@ -373,7 +375,7 @@ Delete a recipe from game, vanilla or other mods. Named `DeleteRecipe.json` (If 
 ### **Biome**
 A new Biome is already to generate in your world! Named `Biomes` (If folder, `Biomes` .)<br />
 Add a biome is more intricate than others.
-```Json
+```Json5
 [
     {
         "id": 123,                      // The ID for Biome, never make it same with other biomes!
@@ -453,7 +455,7 @@ Oh no! Too bad! But now you can take it easy, because I will remind you somethin
 
 ## **Other** <a id="other"></a>
 ### **License** <a id="license"></a>
-**[Pineapple License](LICENSE)**
+**[Mozilla Public License Version 2.0](LICENSE.txt)**
 
 ### **Sponsor**
 [![](https://raw.githubusercontent.com/AmarokIce/AmarokIce/main/img/BuyMeACoffee.png)](https://www.buymeacoffee.com/AmarokIce)

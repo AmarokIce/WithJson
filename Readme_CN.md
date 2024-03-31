@@ -60,13 +60,13 @@ dir: .minecraft
 >> ovo_package.json
 ```
 很好！现在打开`ovo_package.json`，这是我们用于管理OVOPackage的Json，你需要把你所有的OVOPackage登记到这里。现在我的 `ovo_package.json`看起来是这样的：
-```Json
+```Json5
 [
     "pineapple_test_package"
 ]
 ```
 如果我们有超多的OVOPackage，那么看起来应该是这样：
-```Json
+```Json5
 [
     "pineapple_test_package",
     "other_package"
@@ -77,7 +77,7 @@ dir: .minecraft
 ### **创建Modid** <a id="modid"></a><br />
 很好！那么你知道的，“一个模组需要一个Modid”对吧？进入你刚创建的文件夹并创建`info.json`，这是你的Modid的管理器。<br />
 现在你可以取一个任意你喜欢的名字，但你只能使用ASCALL字符集的字符。
-```Json
+```Json5
 {
     "modid": "pineapple"
 }
@@ -93,7 +93,7 @@ dir: .minecraft
  为什么我们不能使用原版的创造模式物品栏？很快就可以了！因为我花费了一些时间思考如何使用它们而不会有任何意外。~~那么我们会有那么多意外吗？~~<br />
 
 创建文件`Group.json`。创建一个新的物品组！
-```Json
+```Json5
 [
   {
     "name": "pineappleGroup",   // 你的物品组的名称，语言键为"itemGroup.%YourGroupName"
@@ -111,7 +111,7 @@ dir: .minecraft
 如果它是一个文件夹，那么里面所有的文件都会被！如果是一个文件，那么所有物品必须在这个文件的列表里。这里是示例：
 
 **File:**
-```Json
+```Json5
 file: Item.json
 
 [
@@ -129,7 +129,7 @@ file: Item.json
 ```
 
 **Folder:**
-```Json
+```Json5
 dir: Item
 
 file: itemtest.json
@@ -168,7 +168,7 @@ file: itemtest2.json
 ### **方块**<a id="block"></a>
 就像物品，一个文件或文件夹。命名为`Block.json`（如果是文件夹，`Block`。）<br />
 那么我们开始：
-```Json
+```Json5
 [
   {
     "name": "pineapple_block",
@@ -186,7 +186,7 @@ file: itemtest2.json
 
 ### **食物**<a id="food"></a>
 食物的命名是 `ItemFood.json`( 如果是文件夹, `ItemFood`) <br />
-```Json
+```Json5
 [
   {
     "name": "pineapple",
@@ -208,7 +208,7 @@ file: itemtest2.json
 ### **礼物**<a id="gift"></a>
 圣诞快乐! 礼物是玩家右键后会给玩家一些物品的物品。命名是 `ItemGift.json` ( 如果是文件夹, `ItemGift`) <br />
 这是一个测试的内容，未来可能会重构。（可能？）
-```Json
+```Json5
 [
     {
         "name": "pineapple_package",
@@ -226,7 +226,7 @@ file: itemtest2.json
 
 ### **工具**<a id="tool"></a>
 有什么比一个工具更好的？两个工具！命名 `ItemTool.json` (如果是文件夹, `ItemTool`)
-```Json
+```Json5
 [
   {
     "name": "pineapple_pickaxe",
@@ -241,7 +241,7 @@ file: itemtest2.json
 
 ### **武器**<a id="weapon"></a>
 ~~我不知道要说点什么让武器看起来酷一些了。~~ 命名 `ItemWeapons.json` (如果是文件夹, `ItemWeapons`)
-```Json
+```Json5
 [
     {
         "name": "pineapple_sword",
@@ -258,7 +258,7 @@ file: itemtest2.json
 如果食谱中有一些问题，可能会导致游戏崩溃。<br />
 **旧样式** <br />
 在WithJson 0.1.0之前，所有食谱必须食用旧样式的。
-```Json
+```Json5
 [
   {
     "recipe": "smelting",           // 熔炼食谱
@@ -298,7 +298,7 @@ file: itemtest2.json
 
 **新样式** <br />
 0.1.0, 现在Recipe.json看起来更像数据包了。
-```Json
+```Json5
 [
   {
     "type": "minecraft:crafting_shaped", // 有序食谱
@@ -361,7 +361,7 @@ file: itemtest2.json
 
 **删除食谱** <br />
 删除一个游戏中的食谱，来自原版或者模组。命名`DeleteRecipe.json` (如果是文件夹, `DeleteRecipe` .) 
-```Json
+```Json5
 [
   "minecraft:bread",
   "minecraft:cake",
@@ -372,7 +372,7 @@ file: itemtest2.json
 ### **群系**
 一个新的群系准备好在世界中生成！命名 `Biomes` (如果是文件夹, `Biomes` .)<br />
 新增一个群系复杂于其他的。
-```Json
+```Json5
 [
     {
         "id": 123,                      // 群系的ID，不可与其他群系相同！
@@ -453,7 +453,7 @@ dir: pineapple
 
 ## **其他**
 ### **许可证**
-**[Pineapple License](LICENSE)**
+**[Mozilla Public License Version 2.0](LICENSE.txt)**
 
 ### **赞助**
 [![](https://raw.githubusercontent.com/AmarokIce/AmarokIce/main/img/AiFaDian.png)](https://afdian.net/a/ut_ice)

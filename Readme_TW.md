@@ -60,13 +60,13 @@ dir: .minecraft
 >> ovo_package.json
 ```
 很好！现在打开`ovo_package.json`，這是我們用於管理OVOPackage的Json文檔，你需要把你所擁有的OVOPackage登記到裡面。現在我的`ovo_package.json`看起來是這樣：
-```Json
+```Json5
 [
     "pineapple_test_package"
 ]
 ```
 如果我們有超多的OVOPackage，那麼看起來是這樣：
-```Json
+```Json5
 [
     "pineapple_test_package",
     "other_package"
@@ -77,7 +77,7 @@ dir: .minecraft
 ### **創建Modid** <a id="modid"></a><br />
 很好！那麼你知道的，“一個模組需要一個Modid”對吧？進入你剛創建的資料夾並創建`info.json`，這是你的Modid管理文檔。<br />
 現在你可以隨意的創建一個你喜歡的名字，但你只能使用ASCALL字符集的字符。
-```Json
+```Json5
 {
     "modid": "pineapple"
 }
@@ -93,7 +93,7 @@ dir: .minecraft
 為什麼不可以使用香草的創造模式物品組？很快就可以了！因為我花費了一些時間思考如何如何使用它們而不會有任何意外。~~那麼我們會有那麼多意外嗎？~~<br />
 
 創建文檔`Group.json`。創建一個新的物品組！
-```Json
+```Json5
 [
   {
     "name": "pineappleGroup",   // 你的物品組的名稱，語言鍵為"itemGroup.%YourGroupName"
@@ -111,7 +111,7 @@ dir: .minecraft
 如果它是一個資料夾，那麼裡面全部的文檔都會被解析！如果是一個文檔，那麼所有物品必須在這個文檔的列表裡。這裡是示例：
 
 **File:**
-```Json
+```Json5
 file: Item.json
 
 [
@@ -129,7 +129,7 @@ file: Item.json
 ```
 
 **Folder:**
-```Json
+```Json5
 dir: Item
 
 file: itemtest.json
@@ -168,7 +168,7 @@ file: itemtest2.json
 ### **方塊**<a id="block"></a>
 就像物品，一個文檔或資料夾。命名為`Block.json`（如果是資料夾，`Block`。）<br />
 讓我們開始：
-```Json
+```Json5
 [
   {
     "name": "pineapple_block",
@@ -186,7 +186,7 @@ file: itemtest2.json
 
 ### **食物**<a id="food"></a>
 食物的命名為 `ItemFood.json`( 如果是資料夾, `ItemFood`) <br />
-```Json
+```Json5
 [
   {
     "name": "pineapple",
@@ -208,7 +208,7 @@ file: itemtest2.json
 ### **禮物**<a id="gift"></a>
 聖誕快樂! 禮物是玩家右擊後會給玩家一些物品的物品。命名為 `ItemGift.json` ( 如果是資料夾, `ItemGift`) <br />
 這是一個測試內容，未來可能會重構（可能？）
-```Json
+```Json5
 [
     {
         "name": "pineapple_package",
@@ -226,7 +226,7 @@ file: itemtest2.json
 
 ### **工具**<a id="tool"></a>
 有什麼比一個工具更好的？兩個工具！命名為 `ItemTool.json` (如果是資料夾, `ItemTool`)
-```Json
+```Json5
 [
   {
     "name": "pineapple_pickaxe",
@@ -241,7 +241,7 @@ file: itemtest2.json
 
 ### **武器**<a id="weapon"></a>
 ~~我不知道要说点什么让武器看起来酷一些了。~~ 命名 `ItemWeapons.json` (如果是資料夾, `ItemWeapons`)
-```Json
+```Json5
 [
     {
         "name": "pineapple_sword",
@@ -258,7 +258,7 @@ file: itemtest2.json
 如果食譜中有任何錯誤，可能會直接導致遊戲崩潰。 <br />
 **舊版** <br />
 在WithJson 0.1.0之前，所有的食譜必須使用舊版。
-```Json
+```Json5
 [
   {
     "recipe": "smelting",           // 熔爐食譜
@@ -298,7 +298,7 @@ file: itemtest2.json
 
 **新版** <br />
 0.1.0, 現在Recipes.json看起來更像數據包了。
-```Json
+```Json5
 [
   {
     "type": "minecraft:crafting_shaped", // 有序食譜
@@ -361,7 +361,7 @@ file: itemtest2.json
 
 **删除食譜** <br />
 刪除一個遊戲中的食譜，來自香草或模組。命名為`DeleteRecipe.json` (如果是資料夾, `DeleteRecipe` .) 
-```Json
+```Json5
 [
   "minecraft:bread",
   "minecraft:cake",
@@ -372,7 +372,7 @@ file: itemtest2.json
 ### **生物系**
 一個新的生物系準備好在世界生成！命名為 `Biomes` (如果是資料夾, `Biomes` .)<br />
 新增一個新的生物系會複雜於其他的。
-```Json
+```Json5
 [
     {
         "id": 123,                      // 生物系的ID，不可與其他生物系的ID相同！
@@ -453,7 +453,7 @@ dir: pineapple
 
 ## **其他**
 ### **許可證**
-**[Pineapple License](LICENSE)**
+**[Mozilla Public License Version 2.0](LICENSE.txt)**
 
 ### 贊助
 [![](https://raw.githubusercontent.com/AmarokIce/AmarokIce/main/img/AiFaDian.png)](https://afdian.net/a/ut_ice)
