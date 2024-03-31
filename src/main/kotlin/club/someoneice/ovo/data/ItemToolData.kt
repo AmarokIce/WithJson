@@ -40,6 +40,6 @@ data class ItemToolData(
         CoreHandler.ITEM_GROUP[this.group]?.let(item::setCreativeTab)
             ?: CoreHandler.ITEM_GROUP_CACHE.getOrPut(this.group, ::ArrayList).add(item)
 
-        return item;
+        return item
     }
 }

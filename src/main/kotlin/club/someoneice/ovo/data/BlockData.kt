@@ -5,8 +5,10 @@ import club.someoneice.ovo.data.helper.Ingredient
 import club.someoneice.ovo.util.toBlock
 import com.google.common.collect.Lists
 import net.minecraft.block.Block
+import net.minecraft.client.renderer.texture.IIconRegister
 import net.minecraft.init.Blocks
 import net.minecraft.item.ItemStack
+import net.minecraft.util.IIcon
 import net.minecraft.world.IBlockAccess
 import net.minecraft.world.World
 
@@ -27,12 +29,18 @@ data class BlockData (
     fun registerBlock(): Block {
         val materialBlock = material.toBlock() ?: Blocks.stone
         val block = object: Block(materialBlock.material) {
+            val icons = arrayOfNulls<IIcon>(textureName.length)
+
             init {
                 this.setBlockName(localizationName)
                 this.setBlockTextureName(this@BlockData.textureName[0])
                 this.setStepSound(materialBlock.stepSound)
                 this.setHardness(this@BlockData.hard)
                 this.setLightLevel(this@BlockData.lightLevel)
+            }
+
+            override fun registerBlockIcons(register: IIconRegister) {
+                for ((i, c) in this@BlockData.textureName.withIndex()) icons[i] = register.registerIcon(c)
             }
 
             override fun isWood(world: IBlockAccess?, x: Int, y: Int, z: Int): Boolean = this@BlockData.rotationType == 2
