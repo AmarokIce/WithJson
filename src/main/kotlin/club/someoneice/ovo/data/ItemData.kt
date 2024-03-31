@@ -23,18 +23,18 @@ data class ItemData (
     val maxSize:            Int             = 64,
     val group:              String          = "minecraft:misc",
     val meta:               Int             = 0,
-    val info:               List<String>    = ArrayList(),
+    val info:               ArrayList<String>    = ArrayList(),
 
     val foodData:           FoodData?       = null
 ) {
     private val icons by lazy<Array<IIcon?>> { arrayOfNulls(this.meta + 1) }
 
-    fun registryItem() {
+    fun registryItem(): Item {
         val flag = this.meta > 0
         val item = foodData?.let { object: ItemFood(it.hunger, it.saturation, it.wolf) {
             init {
-                this.setUnlocalizedName(localizationName)
-                this.setTextureName(textureName)
+                this.setUnlocalizedName(this@ItemData.localizationName)
+                this.setTextureName(this@ItemData.textureName)
 
                 this.setHasSubtypes(flag)
 
@@ -69,12 +69,10 @@ data class ItemData (
             }
         }.apply { if (it.alwaysEat) this.setAlwaysEdible() } } ?: object: Item() {
             init {
-                this.setUnlocalizedName(localizationName)
-                this.setTextureName(textureName)
+                this.setUnlocalizedName(this@ItemData.localizationName)
+                this.setTextureName(this@ItemData.textureName)
 
                 this.setHasSubtypes(flag)
-
-                this.register(name)
             }
 
             override fun registerIcons(register: IIconRegister) {
@@ -87,19 +85,21 @@ data class ItemData (
                 else dataGetSubItems(item, list)
             }
 
-            override fun getIcon(stack: ItemStack, pass: Int): IIcon
-                    = if (!flag) super.getIcon(stack, pass) else icons[stack.itemDamage]!!
+            override fun getIcon(stack: ItemStack, pass: Int): IIcon =
+                if (!flag) super.getIcon(stack, pass) else icons[stack.itemDamage]!!
 
-            override fun getUnlocalizedName(stack: ItemStack): String
-                    = if (!flag) super.getUnlocalizedName(stack) else "${super.getUnlocalizedName(stack)}_${stack.itemDamage}"
+            override fun getUnlocalizedName(stack: ItemStack): String =
+                if (!flag) super.getUnlocalizedName(stack) else "${super.getUnlocalizedName(stack)}_${stack.itemDamage}"
 
             override fun addInformation(item: ItemStack?, player: EntityPlayer, infoList: MutableList<Any?>, shouldShow: Boolean) {
-                item ?: return; for (message in info) infoList.add(I18n.format(message))
+                for (message in info) infoList.add(I18n.format(message))
             }
         }
 
         CoreHandler.ITEM_GROUP[this.group]?.let(item::setCreativeTab)
             ?: CoreHandler.ITEM_GROUP_CACHE.getOrPut(this.group, ::ArrayList).add(item)
+
+        return item
     }
 
     private fun dataRegisterIcons(register: IIconRegister) {

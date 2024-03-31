@@ -3,6 +3,7 @@ package club.someoneice.ovo.core
 import club.someoneice.ovo.util.gson
 import com.google.gson.reflect.TypeToken
 import cpw.mods.fml.common.Loader
+import net.minecraft.block.Block
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.item.Item
 import net.minecraft.util.ResourceLocation
@@ -14,6 +15,7 @@ class CoreHandler {
 
         val ITEM_GROUP = HashMap<String, CreativeTabs>()
         val ITEM_GROUP_CACHE = HashMap<String, ArrayList<Item>>()
+        val BLOCK_GROUP_CACHE = HashMap<String, ArrayList<Block>>()
     }
 
     init {

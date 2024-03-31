@@ -1,7 +1,6 @@
 package club.someoneice.ovov1.base
 
 import club.someoneice.ovo.core.OVOMain
-import club.someoneice.ovo.generator.old.ItemGift
 import club.someoneice.ovov1.core.`object`.DataList
 import club.someoneice.ovov1.core.`object`.Info
 import club.someoneice.ovov1.util.Util.findItemByText
