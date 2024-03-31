@@ -3,7 +3,11 @@ package club.someoneice.ovo.core
 import club.someoneice.ovo.data.*
 import club.someoneice.ovo.data.helper.Ingredient
 import club.someoneice.ovo.util.RemoveRecipes
+import club.someoneice.ovo.util.register
 import com.google.common.collect.Lists
+import cpw.mods.fml.common.Loader
+import net.minecraft.block.Block
+import net.minecraft.item.Item
 import java.io.File
 
 class DataProcessor(val data: File, val modid: String) {
@@ -21,8 +25,22 @@ class DataProcessor(val data: File, val modid: String) {
 
         // Start
         this.dataDeleteRecipes.forEach { it.toItemStack()?.let(RemoveRecipes::removeAllRecipe) }
-        this.dataItem.forEach(ItemData::registryItem)
 
+        val itemListCache = HashMap<String, Item>()
+        this.dataItem.forEach { itemListCache[it.name] = it.registryItem() }
+        this.dataItemTool.forEach { itemListCache[it.name] = it.registerTool() }
+
+        val blockListCache = HashMap<String, Block>()
+        this.dataBlock.forEach { blockListCache[it.name] = it.registerBlock() }
+
+        this.dataBiomes.forEach(BiomesData::register)
+
+        // dataGroup
+        // dataRecipes
+
+        // Finish
+        itemListCache.forEach  { (k, v) -> v.register(k, modid) }
+        blockListCache.forEach { (k, v) -> v.register(k) }
     }
 
     private fun scanFile(file: File) {

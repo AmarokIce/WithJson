@@ -11,10 +11,10 @@ data class ItemToolData(
     val toolMaterial:       String      = "wood",
     val group:              String      = "minecraft:misc"
 ) {
-    fun registerTool(modid: String): Item {
+    fun registerTool(): Item {
         fun setData(item: Item) {
             item.unlocalizedName = this.localizationName
-            item.setTextureName("${modid}:${this.textureName}")
+            item.setTextureName(this.textureName)
             item.setMaxStackSize(1)
         }
 

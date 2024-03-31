@@ -1,7 +1,6 @@
 package club.someoneice.ovo.util
 
 import club.someoneice.json.JSON
-import club.someoneice.ovov1.core.`object`.Info
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import cpw.mods.fml.common.registry.GameRegistry
@@ -35,8 +34,8 @@ fun Block.register(name: String) {
     GameRegistry.registerBlock(this, name)
 }
 
-fun Item.register(name: String) {
-    GameRegistry.registerItem(this, name, Info.modid)
+fun Item.register(name: String, modid: String) {
+    GameRegistry.registerItem(this, name, modid)
 }
 
 fun Item.defaultState(): ItemStack {
