@@ -8,4 +8,8 @@ data class Recipe(
     val key:                HashMap<String, Ingredient>?,
     val ingredients:        ArrayList<Ingredient>?,
     val result:             Ingredient
-)
+) {
+    fun addRecipe() {
+
+    }
+}

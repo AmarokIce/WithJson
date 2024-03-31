@@ -1,5 +1,6 @@
 package club.someoneice.ovo.core
 
+import club.someoneice.ovo.util.JsonHandler
 import club.someoneice.ovo.util.gson
 import com.google.gson.reflect.TypeToken
 import cpw.mods.fml.common.Loader

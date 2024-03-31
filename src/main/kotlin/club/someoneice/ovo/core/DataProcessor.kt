@@ -2,15 +2,15 @@ package club.someoneice.ovo.core
 
 import club.someoneice.ovo.data.*
 import club.someoneice.ovo.data.helper.Ingredient
+import club.someoneice.ovo.util.JsonHandler
 import club.someoneice.ovo.util.RemoveRecipes
 import club.someoneice.ovo.util.register
 import com.google.common.collect.Lists
-import cpw.mods.fml.common.Loader
 import net.minecraft.block.Block
 import net.minecraft.item.Item
 import java.io.File
 
-class DataProcessor(val data: File, val modid: String) {
+class DataProcessor(data: File, private val modid: String) {
     private val dataBiomes        :ArrayList<BiomesData>         = Lists.newArrayList()
     private val dataBlock         :ArrayList<BlockData>          = Lists.newArrayList()
     private val dataItem          :ArrayList<ItemData>           = Lists.newArrayList()
@@ -34,11 +34,9 @@ class DataProcessor(val data: File, val modid: String) {
         this.dataBlock.forEach { blockListCache[it.name] = it.registerBlock() }
 
         this.dataBiomes.forEach(BiomesData::register)
+        this.dataGroup.forEach { it.registerAndScanItemCache(modid) }
+        this.dataRecipes.forEach(Recipe::addRecipe)
 
-        // dataGroup
-        // dataRecipes
-
-        // Finish
         itemListCache.forEach  { (k, v) -> v.register(k, modid) }
         blockListCache.forEach { (k, v) -> v.register(k) }
     }

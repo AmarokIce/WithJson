@@ -1,10 +1,8 @@
 package club.someoneice.ovo.data
 
-import alexsocol.asjlib.bidiRange
 import club.someoneice.ovo.core.CoreHandler
 import club.someoneice.ovo.data.helper.FoodData
 import club.someoneice.ovo.util.giveOrThrowOut
-import club.someoneice.ovo.util.register
 import net.minecraft.client.renderer.texture.IIconRegister
 import net.minecraft.client.resources.I18n
 import net.minecraft.creativetab.CreativeTabs
@@ -37,8 +35,6 @@ data class ItemData (
                 this.setTextureName(this@ItemData.textureName)
 
                 this.setHasSubtypes(flag)
-
-                this.register(name)
             }
             override fun getItemUseAction(item: ItemStack) = if (it.isDrink) EnumAction.drink else EnumAction.eat
             override fun getMaxItemUseDuration(item: ItemStack) = it.speed

@@ -11,6 +11,7 @@ object RemoveRecipes {
         this.removeFurnaceRecipes(item)
     }
 
+    @SuppressWarnings("unchecked")
     fun removeItemRecipes(item: ItemStack) {
         val recipes: ArrayList<IRecipe?> = CraftingManager.getInstance().recipeList as ArrayList<IRecipe?>
         var i = 0
@@ -22,6 +23,7 @@ object RemoveRecipes {
         }
     }
 
+    @SuppressWarnings("unchecked")
     fun removeFurnaceRecipes(item: ItemStack) {
         val recipes: HashMap<ItemStack, ItemStack> = FurnaceRecipes.smelting().smeltingList as HashMap<ItemStack, ItemStack>
         val iterator: Iterator<*> = recipes.entries.iterator()

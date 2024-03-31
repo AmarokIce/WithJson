@@ -1,7 +1,5 @@
-package club.someoneice.ovo.core
+package club.someoneice.ovo.util
 
-import club.someoneice.ovo.util.gson
-import club.someoneice.ovo.util.json
 import com.google.gson.reflect.TypeToken
 import java.io.File
 import java.lang.reflect.ParameterizedType
