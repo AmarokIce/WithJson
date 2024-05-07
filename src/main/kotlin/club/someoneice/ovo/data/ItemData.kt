@@ -16,22 +16,23 @@ import net.minecraft.world.World
 
 data class ItemData (
     val name:               String,
-    val localizationName:   String          = name,
-    val textureName:        String          = name,
-    val maxSize:            Int             = 64,
-    val group:              String          = "minecraft:misc",
-    val meta:               Int             = 0,
-    val info:               ArrayList<String>    = ArrayList(),
+    val localizationName:   String              = name,
+    val textureName:        String              = name,
+    val maxSize:            Int                 = 64,
+    val group:              String              = "minecraft:misc",
+    val meta:               Int                 = 0,
+    val info:               ArrayList<String>   = ArrayList(),
 
-    val foodData:           FoodData?       = null
+    val foodData:           FoodData?           = null
 ) {
     private val icons by lazy<Array<IIcon?>> { arrayOfNulls(this.meta + 1) }
 
-    fun registryItem(): Item {
+    fun registryItem(modid: String): Item {
         val flag = this.meta > 0
         val item = foodData?.let { object: ItemFood(it.hunger, it.saturation, it.wolf) {
             init {
-                this.setUnlocalizedName(this@ItemData.localizationName)
+                val flagName = this@ItemData.localizationName.contains(":")
+                this.setUnlocalizedName("${ if (flagName) "" else "${modid}:" }:${this@ItemData.localizationName}")
                 this.setTextureName(this@ItemData.textureName)
 
                 this.setHasSubtypes(flag)
