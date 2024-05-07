@@ -26,10 +26,11 @@ class DataProcessor(data: File, private val modid: String) {
         this.dataDeleteRecipes.forEach { it.toItemStack()?.let(RemoveRecipes::removeAllRecipe) }
 
         val itemListCache = HashMap<String, Item>()
+        val blockListCache = HashMap<String, Block>()
+
         this.dataItem.forEach { itemListCache[it.name] = it.registryItem(modid) }
         this.dataItemTool.forEach { itemListCache[it.name] = it.registerTool() }
 
-        val blockListCache = HashMap<String, Block>()
         this.dataBlock.forEach { blockListCache[it.name] = it.registerBlock() }
 
         this.dataBiomes.forEach(BiomesData::register)

@@ -36,8 +36,8 @@ data class BiomesData (
 
             @SideOnly(Side.CLIENT) override fun getModdedBiomeGrassColor(original: Int): Int = this@BiomesData.grassColor
             @SideOnly(Side.CLIENT) override fun getWaterColorMultiplier(): Int = this@BiomesData.waterColor
-            @SideOnly(Side.CLIENT) override fun getBiomeGrassColor(p_150558_1_: Int, p_150558_2_: Int, p_150558_3_: Int): Int = this@BiomesData.grassColor
-            @SideOnly(Side.CLIENT) override fun getBiomeFoliageColor(p_150571_1_: Int, p_150571_2_: Int, p_150571_3_: Int): Int = this@BiomesData.grassColor
+            @SideOnly(Side.CLIENT) override fun getBiomeGrassColor(x: Int, y: Int, z: Int): Int = this@BiomesData.grassColor
+            @SideOnly(Side.CLIENT) override fun getBiomeFoliageColor(x: Int, y: Int, z: Int): Int = this@BiomesData.grassColor
         }
     }
 
