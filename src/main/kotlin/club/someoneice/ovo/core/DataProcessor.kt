@@ -23,7 +23,6 @@ class DataProcessor(data: File, private val modid: String) {
     init {
         data.listFiles()!!.forEach(this::scanFile)
 
-        // Start
         this.dataDeleteRecipes.forEach { it.toItemStack()?.let(RemoveRecipes::removeAllRecipe) }
 
         val itemListCache = HashMap<String, Item>()
