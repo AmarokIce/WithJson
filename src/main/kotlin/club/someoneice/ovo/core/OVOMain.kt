@@ -20,6 +20,6 @@ class OVOMain {
     @Mod.EventHandler
     fun initializationModEvent(event: FMLInitializationEvent) {
         Logger.info("OVO is Start loading!")
-        // TODO
+        CoreHandler()
     }
 }

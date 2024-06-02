@@ -58,4 +58,3 @@ fun EntityPlayer.giveOrThrowOut(item: ItemStack) {
 }
 
 val json: JSON = JSON.json5
-val gson: Gson = GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create()

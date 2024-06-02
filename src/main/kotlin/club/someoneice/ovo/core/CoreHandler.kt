@@ -1,8 +1,7 @@
 package club.someoneice.ovo.core
 
 import club.someoneice.ovo.util.JsonHandler
-import club.someoneice.ovo.util.gson
-import com.google.gson.reflect.TypeToken
+import club.someoneice.ovo.util.json
 import cpw.mods.fml.common.Loader
 import net.minecraft.block.Block
 import net.minecraft.creativetab.CreativeTabs
@@ -41,9 +40,11 @@ class CoreHandler {
             JsonHandler.dataScan(baseFile, packagePathList)
 
             if (packagePathList.isEmpty()) return@run
-            fun readWithOriginal(file: File): HashMap<String, String>? {
-                val type = object: TypeToken<HashMap<String, String>>() {}.type
-                return gson.fromJson(file.readText(), type) as HashMap<String, String>?
+            fun readWithOriginal(file: File): HashMap<String, String> {
+                val map = HashMap<String, String>()
+                val raw = json.tryPullObjectOrEmpty(file.readText())
+                if (raw.isEmpty) return map
+                return map.apply { raw.obj.forEach { (k, v) -> this[k] = v.toString() } }
             }
 
             for (i in packagePathList) {
@@ -55,7 +56,7 @@ class CoreHandler {
                 }
 
                 OVOMain.Logger.info("Such OVO-Package: $i")
-                val modid = readWithOriginal(packageInfo)?.let { it["modid"] } ?: "ovo"
+                val modid = readWithOriginal(packageInfo)["modid"] ?: "ovo"
                 DataProcessor(packagePath, modid)
 
                 // if (OVOMain.ManaMetalModInstall) MMMCoreRunner("${basePath}\\${i}")

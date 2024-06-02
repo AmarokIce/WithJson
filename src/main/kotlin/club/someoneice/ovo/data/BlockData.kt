@@ -23,7 +23,7 @@ data class BlockData (
     val dropItem:           ArrayList<Ingredient>   = Lists.newArrayList(Ingredient("this", 1, 0)),
     val group:              String                  = "",
 
-    // 0: Simple, 1: All-sides, 2: Log
+    // 0: Simple, 1: All-Sides, 2: Log, 3: Tile-Entity
     val rotationType:       Int                 = 0
 ) {
     fun registerBlock(): Block {
