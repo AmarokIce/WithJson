@@ -1,8 +1,6 @@
 package club.someoneice.ovo.util
 
 import club.someoneice.json.JSON
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import cpw.mods.fml.common.registry.GameRegistry
 import net.minecraft.block.Block
 import net.minecraft.entity.item.EntityItem

@@ -3,6 +3,9 @@ package club.someoneice.ovo.data
 import club.someoneice.ovo.data.helper.Ingredient
 import com.google.common.collect.Lists
 import cpw.mods.fml.common.registry.GameRegistry
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 data class Recipe(
     val type:               String,
@@ -12,10 +15,10 @@ data class Recipe(
     val result:             Ingredient
 ) {
     fun addRecipe() {
-        when (type.lowercase()) {
+        when (type.lowercase(Locale.getDefault())) {
             "minecraft:shaped_recipe" -> {
                 val list: ArrayList<Any> = Lists.newArrayList(pattern ?: return)
-                (key ?: return).forEach { (key, value) ->
+                (key ?: return).entries.forEach { (key, value) ->
                     list.add(key[0])
                     list.add(value.toItemStack() ?: return)
                 }

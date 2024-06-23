@@ -25,7 +25,7 @@ data class ItemData (
 
     val foodData:           FoodData?           = null
 ) {
-    private val icons by lazy<Array<IIcon?>> { arrayOfNulls(this.meta + 1) }
+    private val icons = arrayOfNulls<IIcon>(this.meta + 1)
 
     fun registryItem(modid: String): Item {
         val flag = this.meta > 0

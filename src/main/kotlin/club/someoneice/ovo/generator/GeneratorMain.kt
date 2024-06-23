@@ -21,7 +21,7 @@ object GeneratorMain {
     private fun askForPath(): String {
         println("请输入路径：")
         while (true) {
-            readln().apply { if (isEmpty()) return@apply else return@askForPath this }
+            readLine()?.apply { if (isEmpty()) return@apply else return@askForPath this }
         }
     }
 }

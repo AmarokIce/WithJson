@@ -1,16 +1,16 @@
 [
   {
     "name": "itemtest",
-    "localization_name": "itemtest",
-    "texture_name": "itemtest",
-    "max_size": 64,
+    "localizationName": "itemtest",
+    "textureName": "itemtest",
+    "maxSize": 64,
     "group": "pineappleGroup"
   },
   {
     "name": "testitem",
-    "localization_name": "testitem",
-    "texture_name": "testitem",
-    "max_size": 16,
+    "localizationName": "testitem",
+    "textureName": "testitem",
+    "maxSize": 16,
     "group": "pineappleGroup"
   }
 ]

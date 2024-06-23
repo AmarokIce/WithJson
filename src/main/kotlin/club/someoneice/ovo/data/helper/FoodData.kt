@@ -7,5 +7,5 @@ data class FoodData (
     val alwaysEat:         Boolean                  = false,
     val speed:             Int                      = 32,
     val isDrink:           Boolean                  = false,
-    val returnItem:        ArrayList<Ingredient>    = ArrayList(),
+    val returnItem:         ArrayList<Ingredient>   = ArrayList(),
 )

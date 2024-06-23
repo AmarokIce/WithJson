@@ -1,6 +1,5 @@
 package club.someoneice.ovo.core
 
-import club.someoneice.ovo.util.JsonHandler
 import club.someoneice.ovo.util.json
 import cpw.mods.fml.common.Loader
 import net.minecraft.block.Block
@@ -9,16 +8,15 @@ import net.minecraft.item.Item
 import net.minecraft.util.ResourceLocation
 import java.io.File
 
-class CoreHandler {
-    companion object {
-        val baseFile: File = File(Loader.instance().configDir.parentFile, "ovo")
+object CoreHandler {
+    private val baseFile: File = File(Loader.instance().configDir.parentFile.path, "ovo")
 
-        val ITEM_GROUP = HashMap<String, CreativeTabs>()
-        val ITEM_GROUP_CACHE = HashMap<String, ArrayList<Item>>()
-        val BLOCK_GROUP_CACHE = HashMap<String, ArrayList<Block>>()
-    }
+    val ITEM_GROUP = HashMap<String, CreativeTabs>()
+    val ITEM_GROUP_CACHE = HashMap<String, ArrayList<Item>>()
+    val BLOCK_GROUP_CACHE = HashMap<String, ArrayList<Block>>()
 
-    init {
+
+    internal fun init() {
         CreativeTabs.creativeTabArray.forEach {
             ITEM_GROUP[ResourceLocation(it.tabLabel).toString()] = it
         }
@@ -37,14 +35,14 @@ class CoreHandler {
             }
 
             val packagePathList = ArrayList<String>()
-            JsonHandler.dataScan(baseFile, packagePathList)
+            this.dataScan(file, packagePathList)
 
             if (packagePathList.isEmpty()) return@run
             fun readWithOriginal(file: File): HashMap<String, String> {
                 val map = HashMap<String, String>()
                 val raw = json.tryPullObjectOrEmpty(file.readText())
                 if (raw.isEmpty) return map
-                return map.apply { raw.obj.forEach { (k, v) -> this[k] = v.toString() } }
+                return map.apply { raw.obj.entries.forEach { (k, v) -> this[k] = v.toString() } }
             }
 
             for (i in packagePathList) {
@@ -65,4 +63,13 @@ class CoreHandler {
         }
     }
 
+    private inline fun <reified T> dataScan(file: File, list: ArrayList<T>) {
+        json5Reader(file.readText(), list)
+        // else jsonReader(file.readText(), list)
+    }
+
+    private inline fun <reified T> json5Reader(text: String, list: ArrayList<T>) {
+        val dataClazz: Class<out T> = T::class.java
+        list.addAll(json.tryPullAsClassList(dataClazz, text))
+    }
 }

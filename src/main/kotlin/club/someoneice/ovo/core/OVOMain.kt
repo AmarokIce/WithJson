@@ -1,13 +1,12 @@
 package club.someoneice.ovo.core
 
-import alexsocol.patcher.KotlinAdapter
 import cpw.mods.fml.common.Loader
 import cpw.mods.fml.common.Mod
 import cpw.mods.fml.common.event.FMLInitializationEvent
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 
-@Mod(modid = OVOMain.MODID, version = OVOMain.VERSION, modLanguageAdapter = KotlinAdapter.className, dependencies = "after:manametalmod")
+@Mod(modid = OVOMain.MODID, version = OVOMain.VERSION, dependencies = "after:manametalmod")
 class OVOMain {
     companion object {
         const val MODID: String = "ovo"
@@ -20,6 +19,6 @@ class OVOMain {
     @Mod.EventHandler
     fun initializationModEvent(event: FMLInitializationEvent) {
         Logger.info("OVO is Start loading!")
-        CoreHandler()
+        CoreHandler.init()
     }
 }

@@ -2,6 +2,8 @@ package club.someoneice.ovo.data
 
 import club.someoneice.ovo.core.CoreHandler
 import net.minecraft.item.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 data class ItemToolData(
     val name:               String,
@@ -19,7 +21,7 @@ data class ItemToolData(
         }
 
         val material = Item.ToolMaterial.valueOf(this@ItemToolData.toolMaterial)
-        val item = when (this.toolkit.lowercase()) {
+        val item = when (this.toolkit.lowercase(Locale.getDefault())) {
             "axe"       -> object: ItemAxe(material) {}.apply(::setData)
             "hoe"       -> object: ItemHoe(material) {}.apply(::setData)
             "shovel"    -> object: ItemSpade(material) {}.apply(::setData)
