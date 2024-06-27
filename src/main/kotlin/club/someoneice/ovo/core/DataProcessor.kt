@@ -3,12 +3,14 @@ package club.someoneice.ovo.core
 import club.someoneice.ovo.data.*
 import club.someoneice.ovo.data.helper.Ingredient
 import club.someoneice.ovo.util.RemoveRecipes
-import club.someoneice.ovo.util.json
+import club.someoneice.ovo.util.gson
 import club.someoneice.ovo.util.register
 import com.google.common.collect.Lists
+import com.google.gson.reflect.TypeToken
 import net.minecraft.block.Block
 import net.minecraft.item.Item
 import java.io.File
+import java.io.IOException
 import java.util.*
 
 class DataProcessor(data: File, private val modid: String) {
@@ -46,14 +48,14 @@ class DataProcessor(data: File, private val modid: String) {
         val name: String = if (file.isDirectory) file.name else file.nameWithoutExtension
         if (name.endsWith("s")) name.substring(0, name.length - 1)
 
-        when (name.lowercase(Locale.getDefault())) {
-            "Group".lowercase()         -> this.handle(file, dataGroup)
-            "DeleteRecipe".lowercase()  -> this.handle(file, dataDeleteRecipes)
-            "Item".lowercase()          -> this.handle(file, dataItem)
-            "ItemTool".lowercase()      -> this.handle(file, dataItemTool)
-            "Block".lowercase()         -> this.handle(file, dataBlock)
-            "Recipe".lowercase()        -> this.handle(file, dataRecipes)
-            "Biome".lowercase()         -> this.handle(file, dataBiomes)
+        when (name.lowercase()) {
+            "Group".lowercase()         -> handle(file, dataGroup)
+            "DeleteRecipe".lowercase()  -> handle(file, dataDeleteRecipes)
+            "Item".lowercase()          -> handle(file, dataItem)
+            "ItemTool".lowercase()      -> handle(file, dataItemTool)
+            "Block".lowercase()         -> handle(file, dataBlock)
+            "Recipe".lowercase()        -> handle(file, dataRecipes)
+            "Biome".lowercase()         -> handle(file, dataBiomes)
         }
     }
 
@@ -63,7 +65,17 @@ class DataProcessor(data: File, private val modid: String) {
     }
 
     private inline fun <reified T> dataScan(file: File, list: ArrayList<T>) {
-        val dataClazz: Class<out T> = T::class.java
-        list.addAll(json.tryPullAsClassList(dataClazz, file.readText()))
+        list.addAll(pullAsData<T>(read(file).toString()))
+    }
+
+    private inline fun <reified T> pullAsData(nodeBase: String) =
+        gson.fromJson<ArrayList<T>>(nodeBase, object: TypeToken<ArrayList<T>>() {}.type)
+
+    @Throws(IOException::class)
+    private fun read(file: File) = StringBuilder().apply {
+        file.readLines().forEach { text ->
+            if (text.contains("//")) this.append(text, 0, text.indexOf("//"))
+            else this.append(text)
+        }
     }
 }

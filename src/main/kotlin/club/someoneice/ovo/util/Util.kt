@@ -1,6 +1,7 @@
 package club.someoneice.ovo.util
 
 import club.someoneice.json.JSON
+import com.google.gson.Gson
 import cpw.mods.fml.common.registry.GameRegistry
 import net.minecraft.block.Block
 import net.minecraft.entity.item.EntityItem
@@ -56,3 +57,4 @@ fun EntityPlayer.giveOrThrowOut(item: ItemStack) {
 }
 
 val json: JSON = JSON.json5
+val gson: Gson = Gson()

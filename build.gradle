@@ -1,6 +1,6 @@
 buildscript {
     ext.kotlinVersion = '1.9.21'
-    ext.ppcVersion = '1.7.1'
+    ext.ppcVersion = '1.8.1'
     ext.neiVersion = '2.5.17'
     ext.ccVersion = '1.2.1'
 
@@ -73,12 +73,12 @@ dependencies {
     /* Kotlin */
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
     implementation "curse.maven:AJSCore-445557:5155186"
-    // implementation 'com.github.GTNewHorizons:Forgelin:1.10.2-1.0.5'
 
+    // implementation 'com.google.code.gson:gson:2.11.0'
 
     /* Pineapple Libraries */
     implementation "club.someoneice.pineapplepsychic:pineapple-psychic:$ppcVersion"
-    implementation "club.someoneice.togocup.recipebook:PineappleRecipeBook:1.0"
+    // implementation "club.someoneice.togocup.recipebook:PineappleRecipeBook:1.0"
 
     /* ManaMetalMod */
     implementation "curse.maven:Muya-530214:4364097"

@@ -1,12 +1,15 @@
 package club.someoneice.ovo.core
 
+import club.someoneice.ovo.util.gson
 import club.someoneice.ovo.util.json
+import com.google.gson.reflect.TypeToken
 import cpw.mods.fml.common.Loader
 import net.minecraft.block.Block
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.item.Item
 import net.minecraft.util.ResourceLocation
 import java.io.File
+import java.io.IOException
 
 object CoreHandler {
     private val baseFile: File = File(Loader.instance().configDir.parentFile.path, "ovo")
@@ -63,13 +66,18 @@ object CoreHandler {
         }
     }
 
-    private inline fun <reified T> dataScan(file: File, list: ArrayList<T>) {
-        json5Reader(file.readText(), list)
-        // else jsonReader(file.readText(), list)
+    private inline fun <reified T> dataScan(file: File, list: java.util.ArrayList<T>) {
+        list.addAll(pullAsData<T>(read(file).toString()))
     }
 
-    private inline fun <reified T> json5Reader(text: String, list: ArrayList<T>) {
-        val dataClazz: Class<out T> = T::class.java
-        list.addAll(json.tryPullAsClassList(dataClazz, text))
+    private inline fun <reified T> pullAsData(nodeBase: String) =
+        gson.fromJson<java.util.ArrayList<T>>(nodeBase, object: TypeToken<java.util.ArrayList<T>>() {}.type)
+
+    @Throws(IOException::class)
+    private fun read(file: File) = StringBuilder().apply {
+        file.readLines().forEach { text ->
+            if (text.contains("//")) this.append(text, 0, text.indexOf("//"))
+            else this.append(text)
+        }
     }
 }

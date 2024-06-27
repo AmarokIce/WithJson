@@ -3,7 +3,6 @@ package club.someoneice.ovo.data
 import club.someoneice.ovo.core.CoreHandler
 import net.minecraft.item.*
 import java.util.*
-import kotlin.collections.ArrayList
 
 data class ItemToolData(
     val name:               String,
